@@ -10,11 +10,11 @@
   "name": "angular-cordova",
   "version": "0.1.0",
   "description": "A Cordova wrapper for Angular",
-  "keywords": {
+  "keywords": [
     "angular",
     "cordova",
     "ngCordova"
-  },
+  ],
   "devDependencies": {
     "eslint": "2.8.0"
   }
