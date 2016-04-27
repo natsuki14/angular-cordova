@@ -1,0 +1,19 @@
+{
+  "author": {
+    "name": "Robert Arnesson"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arnesson/angular-cordova"
+  },
+  "description": "Cordova wrapper for Angular",
+  "keywords": {
+    "angular",
+    "cordova",
+    "ngCordova"
+  },
+  "devDependencies": {
+    "eslint": "2.8.0"
+  }
+}
