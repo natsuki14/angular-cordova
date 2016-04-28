@@ -4,7 +4,7 @@ var main = function() {
     /* run eslint */
     var CLIEngine = require("eslint").CLIEngine;
     var cli = new CLIEngine();
-    var report = cli.executeOnFiles(["cordova.js", "plugins"]);
+    var report = cli.executeOnFiles(["src"]);
     var formatter = cli.getFormatter();
     var exitCode = 0;
 
