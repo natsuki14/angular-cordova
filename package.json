@@ -12,6 +12,7 @@
   "description": "A Cordova wrapper for Angular",
   "keywords": [
     "angular",
+    "angularjs",
     "cordova",
     "ngCordova"
   ],
