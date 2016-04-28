@@ -3,11 +3,13 @@
 angular.module('ngCordova')
 .factory('$cordovaBatteryStatus', ['$cordova', function($cordova) {
     return {
-        on: $cordova.on
+        $on: function(event, fn) {
+            return $cordova.$on(event, fn, '$cordovaBatteryStatus');
+        }
     };
 }])
 .config(['$cordovaProvider', function ($cordovaProvider) {
-    $cordovaProvider.registerEvent(window, 'batterystatus');
-    $cordovaProvider.registerEvent(window, 'batterycritical');
-    $cordovaProvider.registerEvent(window, 'batterylow');
+    $cordovaProvider.registerEvent(window, '$cordovaBatteryStatus:batterystatus');
+    $cordovaProvider.registerEvent(window, '$cordovaBatteryStatus:batterycritical');
+    $cordovaProvider.registerEvent(window, '$cordovaBatteryStatus:batterylow');
 }]);

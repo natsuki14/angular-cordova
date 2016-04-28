@@ -8,7 +8,7 @@ angular.module('ngCordova', [])
     var events = {};
     var ready = false;
 
-    var execute = function(event, args) {
+    var executeEvent = function(event, args) {
         if (events[event]) {
             for (var i = 0; i < events[event].length; i++) {
                 events[event][i].apply(events[event][i], args || []);
@@ -16,28 +16,45 @@ angular.module('ngCordova', [])
         }
     };
 
+    _this.platformId = window.cordova.platformId;
+
     _this.registerEvent = function(element, event) {
+        if (event.split(":").length !== 2) {
+            console.error('angular-cordova: event "' + String(event) + '" is invalid. the event should be in the format $module:event, e.g. $cordova:deviceready');
+        }
+
         if (listeners[event]) {
-            console.warn('angular-cordova: event "' + String(event) + '" is already registered');
+            console.error('angular-cordova: event "' + String(event) + '" is already registered');
             return;
         }
 
         listeners[event] = function() {
-            execute(event, arguments);
+            executeEvent(event, arguments);
         };
 
-        element.addEventListener(event, listeners[event], false);
+        element.addEventListener(event.split(":")[1], listeners[event], false);
     };
 
     _this.unregisterEvent = function(element, event) {
-        element.removeEventListener(event, listeners[event], false);
+        if (!listeners[event]) {
+            console.error('angular-cordova: "' + String(event) + '" is not a registered event');
+            return;
+        }
+
+        element.removeEventListener(event.split(":")[1], listeners[event], false);
     };
 
-    _this.platformId = window.cordova.platformId;
+    _this.on = function(event, fn, prefix) {
+        if (prefix) {
+            event = prefix + ":" + event;
+        }
 
-    _this.on = function(event, fn) {
+        if (event.split(":").length !== 2) {
+            console.error('angular-cordova: event "' + String(event) + '" is invalid. the event should be in the format $module:event, e.g. $cordova:deviceready');
+        }
+
         if (!listeners[event]) {
-            console.warn('angular-cordova: "' + String(event) + '" is not a registered event');
+            console.error('angular-cordova: "' + String(event) + '" is not a registered event');
             return;
         }
 
@@ -48,9 +65,9 @@ angular.module('ngCordova', [])
         events[event].push(fn);
     };
 
-    _this.registerEvent(document, 'deviceready');
+    _this.registerEvent(document, '$cordova:deviceready');
 
-    _this.on('deviceready', function() {
+    _this.on('$cordova:deviceready', function() {
         ready = true;
 
         angular.forEach(callbacks, function(callback) {
@@ -74,7 +91,7 @@ angular.module('ngCordova', [])
         return {
             registerEvent: _this.registerEvent,
             uregisterEvent: _this.unregisterEvent,
-            on: _this.on,
+            $on: _this.on,
             $q: function(fn) {
                 return function() {
                     var q = $q.defer();

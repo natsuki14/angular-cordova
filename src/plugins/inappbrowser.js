@@ -12,10 +12,10 @@ angular.module('ngCordova')
 
             var ref = window.cordova.InAppBrowser.open(url, target, o.join(","));
 
-            $cordova.registerEvent(ref, 'loadstart');
-            $cordova.registerEvent(ref, 'loadstop');
-            $cordova.registerEvent(ref, 'loaderror');
-            $cordova.registerEvent(ref, 'exit');
+            $cordova.registerEvent(ref, '$cordovaInAppBrowser:loadstart');
+            $cordova.registerEvent(ref, '$cordovaInAppBrowser:loadstop');
+            $cordova.registerEvent(ref, '$cordovaInAppBrowser:loaderror');
+            $cordova.registerEvent(ref, '$cordovaInAppBrowser:exit');
 
             $q.promise.close = function() {
                 ref.close();
@@ -37,6 +37,8 @@ angular.module('ngCordova')
 
             return $q.promise;
         }),
-        on: $cordova.on
+        $on: function(event, fn) {
+            return $cordova.$on(event, fn, '$cordovaNetworkInformation');
+        }
     };
 }]);

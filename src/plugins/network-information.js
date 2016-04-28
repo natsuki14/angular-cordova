@@ -16,10 +16,12 @@ angular.module('ngCordova')
         type: $cordova.$q(function($q) {
             $q.resolve(window.navigator.connection.type);
         }),
-        on: $cordova.on
+        $on: function(event, fn) {
+            return $cordova.$on(event, fn, '$cordovaNetworkInformation');
+        }
     };
 }])
 .config(['$cordovaProvider', function ($cordovaProvider) {
-    $cordovaProvider.registerEvent(document, 'offline');
-    $cordovaProvider.registerEvent(document, 'online');
+    $cordovaProvider.registerEvent(document, '$cordovaNetworkInformation:offline');
+    $cordovaProvider.registerEvent(document, '$cordovaNetworkInformation:online');
 }]);
