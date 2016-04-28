@@ -23,7 +23,7 @@ angular.module('ngCordova', [])
         }
 
         listeners[event] = function() {
-            execute(event, this.arguments);
+            execute(event, arguments);
         };
 
         element.addEventListener(event, listeners[event], false);
@@ -78,8 +78,8 @@ angular.module('ngCordova', [])
             $q: function(fn) {
                 return function() {
                     var q = $q.defer();
-                    var args = this.arguments;
-                    args.push($q);
+                    var args = Array.from(arguments);
+                    args.push(q);
 
                     deviceready().then(function() {
                         fn.apply(fn, args);
