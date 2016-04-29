@@ -45,6 +45,10 @@ angular.module('ngCordova', [])
     };
 
     _this.on = function(event, fn, prefix) {
+        if (!prefix && event && event.split(":").length === 0) {
+            prefix = "$cordova";
+        }
+
         if (prefix) {
             event = prefix + ":" + event;
         }
