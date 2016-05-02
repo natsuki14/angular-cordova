@@ -26,6 +26,10 @@ angular.module('ngCordova')
         }
 
         window.resolveLocalFileSystemURL(path, $q.resolve, $q.reject);
+
+        $q.promise.abort = $q.reject;
+
+        return $q.promise;
     });
 
     var getFile = $cordova.$q(function(path, fileName, options, $q) {
@@ -40,6 +44,10 @@ angular.module('ngCordova')
         resolveLocalFileSystemURL(path).then(function(fileSystem) {
             fileSystem.getFile(fileName, options || {create: false}, $q.resolve, $q.reject);
         }, $q.reject);
+
+        $q.promise.abort = $q.reject;
+
+        return $q.promise;
     });
 
     var getDirectory = $cordova.$q(function(path, dirName, options, $q) {
@@ -54,6 +62,10 @@ angular.module('ngCordova')
         resolveLocalFileSystemURL(path).then(function(fileSystem) {
             fileSystem.getDirectory(dirName, options || {create: false}, $q.resolve, $q.reject);
         }, $q.reject);
+
+        $q.promise.abort = $q.reject;
+
+        return $q.promise;
     });
 
     var createReader = $cordova.$q(function(fileEntry, $q) {
@@ -88,33 +100,33 @@ angular.module('ngCordova')
             });
         };
 
+        $q.promise.abort = reader.abort;
+
         return $q.promise;
     });
 
     var createWriter = $cordova.$q(function(fileEntry, $q) {
-        $q.promise.write = function(contents, truncate) {
-            fileEntry.createWriter(function(writer) {
+        fileEntry.createWriter(function(writer) {
+            writer.onwriteend = function(evt) {
+                if (this.error) {
+                    $q.reject(this.error);
+                } else {
+                    $q.resolve(evt);
+                }
+            };
+
+            $q.promise.write = function(contents, truncate) {
                 if (truncate) {
                     writer.truncate(true);
                 } else {
                     writer.seek(writer.length);
                 }
 
-                writer.onwriteend = function(evt) {
-                    if (this.error) {
-                        $q.reject(this.error);
-                    } else {
-                        $q.resolve(evt);
-                    }
-                };
-
                 writer.write(contents);
+            };
 
-                this.abort = function() {
-                    writer.abort();
-                };
-            });
-        };
+            $q.promise.abort = writer.abort;
+        });
 
         return $q.promise;
     });
@@ -153,41 +165,46 @@ angular.module('ngCordova')
             }, $q.reject);
         }),
         writeFile: $cordova.$q(function(path, fileName, contents, truncate, $q) {
-            getFile(path, fileName, {
+            return getFile(path, fileName, {
                 create: true,
                 exclusive: false
             }).then(function(fileEntry) {
                 var writer = createWriter(fileEntry);
                 writer.then($q.resolve, $q.reject);
                 writer.write(contents, truncate);
+                return writer;
             }, $q.reject);
         }),
         readAsText: $cordova.$q(function(path, fileName, $q) {
-            getFile(path, fileName).then(function(fileEntry) {
+            return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
                 reader.readAsText();
+                return reader;
             }, $q.reject);
         }),
         readAsDataURL: $cordova.$q(function(path, fileName, $q) {
-            getFile(path, fileName).then(function(fileEntry) {
+            return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
                 reader.readAsDataURL();
+                return reader;
             }, $q.reject);
         }),
         readAsBinaryString: $cordova.$q(function(path, fileName, $q) {
-            getFile(path, fileName).then(function(fileEntry) {
+            return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
                 reader.readAsBinaryString();
+                return reader;
             }, $q.reject);
         }),
         readAsArrayBuffer: $cordova.$q(function(path, fileName, $q) {
-            getFile(path, fileName).then(function(fileEntry) {
+            return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
                 reader.readAsArrayBuffer();
+                return reader;
             }, $q.reject);
         }),
         moveFile: $cordova.$q(function(path, fileName, newPath, newFileName, $q) {

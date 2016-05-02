@@ -81,15 +81,21 @@ angular.module('ngCordova', [])
 
     _this.$get = ['$q', function($q) {
         var deviceready = function() {
-            return $q(function(resolve) {
+            return function() {
+                var q = $q.defer();
+
                 if (ready) {
-                    resolve();
+                    q.resolve();
                 } else {
                     callbacks.push(function() {
-                        resolve();
+                        q.resolve();
                     });
                 }
-            });
+
+                q.promise.abort = q.reject;
+
+                return q.promise;
+            };
         };
 
         return {
@@ -102,9 +108,16 @@ angular.module('ngCordova', [])
                     var args = Array.from(arguments);
                     args.push(q);
 
-                    deviceready().then(function() {
+                    var promise = deviceready().then(function() {
                         fn.apply(fn, args);
                     });
+
+                    q.promise.abort = function() {
+                        promise.abort();
+                        q.reject();
+                    };
+
+                    q.promise.clearWatch = q.promise.abort;
 
                     return q.promise;
                 };
