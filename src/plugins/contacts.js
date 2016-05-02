@@ -1,7 +1,7 @@
 // cordova-plugin-contacts
 'use strict';
 angular.module('ngCordova')
-.constant('$cordovaContactsError', {
+.constant('$cordovaContactError', {
     UNKNOWN_ERROR: 0,
     INVALID_ARGUMENT_ERROR: 1,
     TIMEOUT_ERROR: 2,
