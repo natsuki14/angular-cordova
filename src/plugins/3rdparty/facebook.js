@@ -20,6 +20,21 @@ angular.module('ngCordova')
         }),
         logout: $cordova.$q(function($q) {
             window.facebookConnectPlugin.logout($q.resolve, $q.reject);
+        }),
+        logEvent: $cordova.$q(function($q) {
+            window.facebookConnectPlugin.logEvent($q.resolve, $q.reject);
+        }),
+        logPurchase: $cordova.$q(function($q) {
+            window.facebookConnectPlugin.logPurchase($q.resolve, $q.reject);
+        }),
+        appInvite: $cordova.$q(function($q) {
+            window.facebookConnectPlugin.appInvite($q.resolve, $q.reject);
+        }),
+        getDeferredApplink: $cordova.$q(function($q) {
+            window.facebookConnectPlugin.getDeferredApplink($q.resolve, $q.reject);
+        }),
+        activateApp: $cordova.$q(function($q) {
+            window.facebookConnectPlugin.activateApp($q.resolve, $q.reject);
         })
     };
 }]);
