@@ -8,7 +8,7 @@ angular.module('ngCordova', [])
     var events = {};
     var ready = false;
 
-    var executeEvent = function(event, args) {
+    var execute = function(event, args) {
         if (events[event]) {
             for (var i = 0; i < events[event].length; i++) {
                 events[event][i].apply(events[event][i], args || []);
@@ -18,7 +18,7 @@ angular.module('ngCordova', [])
 
     _this.platformId = window.cordova.platformId;
 
-    _this.registerEvent = function(element, event) {
+    _this.register = function(element, event) {
         if (event.split(":").length !== 2) {
             console.error('angular-cordova: event "' + String(event) + '" is invalid. the event should be in the format $module:event, e.g. $cordova:deviceready');
         }
@@ -29,13 +29,13 @@ angular.module('ngCordova', [])
         }
 
         listeners[event] = function() {
-            executeEvent(event, arguments);
+            execute(event, arguments);
         };
 
         element.addEventListener(event.split(":")[1], listeners[event], false);
     };
 
-    _this.unregisterEvent = function(element, event) {
+    _this.unregister = function(element, event) {
         if (!listeners[event]) {
             console.error('angular-cordova: "' + String(event) + '" is not a registered event');
             return;
@@ -44,7 +44,9 @@ angular.module('ngCordova', [])
         element.removeEventListener(event.split(":")[1], listeners[event], false);
     };
 
-    _this.on = function(event, fn, prefix) {
+    _this.register(document, '$cordova:deviceready');
+
+    _this.$on = function(event, fn, prefix) {
         if (!prefix && event && event.split(":").length === 0) {
             prefix = "$cordova";
         }
@@ -69,9 +71,7 @@ angular.module('ngCordova', [])
         events[event].push(fn);
     };
 
-    _this.registerEvent(document, '$cordova:deviceready');
-
-    _this.on('$cordova:deviceready', function() {
+    _this.$on('$cordova:deviceready', function() {
         ready = true;
 
         angular.forEach(callbacks, function(callback) {
@@ -99,9 +99,9 @@ angular.module('ngCordova', [])
         };
 
         return {
-            registerEvent: _this.registerEvent,
-            uregisterEvent: _this.unregisterEvent,
-            $on: _this.on,
+            register: _this.register,
+            uregister: _this.unregister,
+            $on: _this.$on,
             $q: function(fn) {
                 return function() {
                     var q = $q.defer();

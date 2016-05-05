@@ -22,6 +22,6 @@ angular.module('ngCordova')
     };
 }])
 .config(['$cordovaProvider', function ($cordovaProvider) {
-    $cordovaProvider.registerEvent(document, '$cordovaNetworkInformation:offline');
-    $cordovaProvider.registerEvent(document, '$cordovaNetworkInformation:online');
+    $cordovaProvider.register(document, '$cordovaNetworkInformation:offline');
+    $cordovaProvider.register(document, '$cordovaNetworkInformation:online');
 }]);

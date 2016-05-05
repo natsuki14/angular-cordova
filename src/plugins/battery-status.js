@@ -9,7 +9,7 @@ angular.module('ngCordova')
     };
 }])
 .config(['$cordovaProvider', function ($cordovaProvider) {
-    $cordovaProvider.registerEvent(window, '$cordovaBatteryStatus:batterystatus');
-    $cordovaProvider.registerEvent(window, '$cordovaBatteryStatus:batterycritical');
-    $cordovaProvider.registerEvent(window, '$cordovaBatteryStatus:batterylow');
+    $cordovaProvider.register(window, '$cordovaBatteryStatus:batterystatus');
+    $cordovaProvider.register(window, '$cordovaBatteryStatus:batterycritical');
+    $cordovaProvider.register(window, '$cordovaBatteryStatus:batterylow');
 }]);

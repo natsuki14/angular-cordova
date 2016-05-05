@@ -12,10 +12,10 @@ angular.module('ngCordova')
 
             var ref = window.cordova.InAppBrowser.open(url, target, o.join(","));
 
-            $cordova.registerEvent(ref, '$cordovaInAppBrowser:loadstart');
-            $cordova.registerEvent(ref, '$cordovaInAppBrowser:loadstop');
-            $cordova.registerEvent(ref, '$cordovaInAppBrowser:loaderror');
-            $cordova.registerEvent(ref, '$cordovaInAppBrowser:exit');
+            $cordova.register(ref, '$cordovaInAppBrowser:loadstart');
+            $cordova.register(ref, '$cordovaInAppBrowser:loadstop');
+            $cordova.register(ref, '$cordovaInAppBrowser:loaderror');
+            $cordova.register(ref, '$cordovaInAppBrowser:exit');
 
             $q.promise.close = function() {
                 ref.close();
