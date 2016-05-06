@@ -81,21 +81,19 @@ angular.module('ngCordova', [])
 
     _this.$get = ['$q', function($q) {
         var deviceready = function() {
-            return function() {
-                var q = $q.defer();
+            var q = $q.defer();
 
-                if (ready) {
+            if (ready) {
+                q.resolve();
+            } else {
+                callbacks.push(function() {
                     q.resolve();
-                } else {
-                    callbacks.push(function() {
-                        q.resolve();
-                    });
-                }
+                });
+            }
 
-                q.promise.abort = q.reject;
+            q.promise.abort = q.reject;
 
-                return q.promise;
-            };
+            return q.promise;
         };
 
         return {
