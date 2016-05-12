@@ -20,12 +20,11 @@ angular.module('ngCordova', [])
 
     _this.register = function(element, event) {
         if (event.split(":").length !== 2) {
-            console.error('angular-cordova: event "' + String(event) + '" is invalid. the event should be in the format $module:event, e.g. $cordova:deviceready');
+            throw new Error('angular-cordova: event "' + String(event) + '" is invalid. the event should be in the format $module:event, e.g. $cordova:deviceready');
         }
 
         if (listeners[event]) {
-            console.error('angular-cordova: event "' + String(event) + '" is already registered');
-            return;
+            throw new Error('angular-cordova: event "' + String(event) + '" is already registered');
         }
 
         listeners[event] = function() {
@@ -37,8 +36,7 @@ angular.module('ngCordova', [])
 
     _this.unregister = function(element, event) {
         if (!listeners[event]) {
-            console.error('angular-cordova: "' + String(event) + '" is not a registered event');
-            return;
+            throw new Error('angular-cordova: "' + String(event) + '" is not a registered event');
         }
 
         element.removeEventListener(event.split(":")[1], listeners[event], false);
@@ -56,12 +54,11 @@ angular.module('ngCordova', [])
         }
 
         if (event.split(":").length !== 2) {
-            console.error('angular-cordova: event "' + String(event) + '" is invalid. the event should be in the format $module:event, e.g. $cordova:deviceready');
+            throw new Error('angular-cordova: event "' + String(event) + '" is invalid. the event should be in the format $module:event, e.g. $cordova:deviceready');
         }
 
         if (!listeners[event]) {
-            console.error('angular-cordova: "' + String(event) + '" is not a registered event');
-            return;
+            throw new Error('angular-cordova: "' + String(event) + '" is not a registered event');
         }
 
         if (!events[event]) {
