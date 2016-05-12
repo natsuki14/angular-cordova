@@ -20,6 +20,7 @@ module.exports = {
     },
     rules: {
         // Possible Errors
+        'no-console': 2,
         'comma-dangle': [2, 'never'],
         'no-cond-assign': 2,
         'no-constant-condition': 2,
