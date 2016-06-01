@@ -3,7 +3,7 @@
 angular.module('ngCordova')
 .factory('$cordovaInAppBrowser', ['$q', '$cordova', function($q, $cordova) {
     return {
-        open: $cordova.$q(function(url, target, options, $q) {
+        open: $cordova.$q(function($q, url, target, options) {
             var o = [];
 
             angular.forEach(options, function (value, key) {

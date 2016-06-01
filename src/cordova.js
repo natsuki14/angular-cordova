@@ -101,7 +101,7 @@ angular.module('ngCordova', [])
                 return function() {
                     var q = $q.defer();
                     var args = Array.from(arguments);
-                    args.push(q);
+                    args.unshift(q);
 
                     var promise = deviceready().then(function() {
                         fn.apply(fn, args);

@@ -13,10 +13,10 @@ angular.module('ngCordova')
 })
 .factory('$cordovaContacts', ['$q', '$cordova', function($q, $cordova) {
     return {
-        create: $cordova.$q(function(contact, $q) {
+        create: $cordova.$q(function($q, contact) {
             $q.resolve(window.navigator.contacts.create(contact));
         }),
-        find: $cordova.$q(function(fields, options, $q) {
+        find: $cordova.$q(function($q, fields, options) {
             window.navigator.contacts.find(fields || ['id', 'displayName'], $q.resolve, $q.reject, options);
         }),
         pickContact: $cordova.$q(function($q) {

@@ -8,7 +8,7 @@ angular.module('ngCordova')
     MEDIA_ERR_NONE_SUPPORTED: 4
 })
 .factory('$cordovaMedia', ['$cordova', function($cordova) {
-    return $cordova.$q(function(src, $q) {
+    return $cordova.$q(function($q, src) {
         var media = new window.Media(src, $q.resolve, $q.reject, $q.notify);
 
         $q.promise.play = media.play;

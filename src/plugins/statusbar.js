@@ -3,7 +3,7 @@
 angular.module('ngCordova')
 .factory('$cordovaStatusbar', ['$cordova', function($cordova) {
     return {
-        overlaysWebView: $cordova.$q(function(bool, $q) {
+        overlaysWebView: $cordova.$q(function($q, bool) {
             $q.resolve(window.StatusBar.overlaysWebView(bool));
         }),
         styleDefault: $cordova.$q(function($q) {
@@ -18,10 +18,10 @@ angular.module('ngCordova')
         styleBlackOpaque: $cordova.$q(function($q) {
             $q.resolve(window.StatusBar.styleBlackOpaque());
         }),
-        backgroundColorByName: $cordova.$q(function(color, $q) {
+        backgroundColorByName: $cordova.$q(function($q, color) {
             $q.resolve(window.StatusBar.backgroundColorByName(color));
         }),
-        backgroundColorByHexString: $cordova.$q(function(colorHex, $q) {
+        backgroundColorByHexString: $cordova.$q(function($q, colorHex) {
             $q.resolve(window.StatusBar.backgroundColorByHexString(colorHex));
         }),
         hide: $cordova.$q(function($q) {

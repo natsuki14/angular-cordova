@@ -33,7 +33,7 @@ angular.module('ngCordova')
 })
 .factory('$cordovaCamera', ['$cordova', function($cordova) {
     return {
-        getPicture: $cordova.$q(function(options, $q) {
+        getPicture: $cordova.$q(function($q, options) {
             window.navigator.camera.getPicture($q.resolve, $q.reject, options);
         }),
         cleanup: $cordova.$q(function($q) {

@@ -3,13 +3,13 @@
 angular.module('ngCordova')
 .factory('$cordovaFacebook', ['$cordova', function($cordova) {
     return {
-        login: $cordova.$q(function(permissions, $q) {
+        login: $cordova.$q(function($q, permissions) {
             window.facebookConnectPlugin.login(permissions, $q.resolve, $q.reject);
         }),
-        showDialog: $cordova.$q(function(options, $q) {
+        showDialog: $cordova.$q(function($q, options) {
             window.facebookConnectPlugin.showDialog(options, $q.resolve, $q.reject);
         }),
-        api: $cordova.$q(function(path, permissions, $q) {
+        api: $cordova.$q(function($q, path, permissions) {
             window.facebookConnectPlugin.api(path, permissions, $q.resolve, $q.reject);
         }),
         getAccessToken: $cordova.$q(function($q) {

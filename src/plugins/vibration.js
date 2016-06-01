@@ -3,7 +3,7 @@
 angular.module('ngCordova')
 .factory('$cordovaVibration', ['$cordova', function($cordova) {
     return {
-        vibrate: $cordova.$q(function(time, $q) {
+        vibrate: $cordova.$q(function($q, time) {
             $q.resolve(window.navigator.vibrate(time));
         })
     };

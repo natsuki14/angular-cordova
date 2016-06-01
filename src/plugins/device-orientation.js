@@ -10,7 +10,7 @@ angular.module('ngCordova')
         getCurrentHeading: $cordova.$q(function($q) {
             window.navigator.compass.getCurrentHeading($q.resolve, $q.reject);
         }),
-        watchHeading: $cordova.$q(function(options, $q) {
+        watchHeading: $cordova.$q(function($q, options) {
             var watchID = window.navigator.compass.watchHeading($q.notify, $q.reject, options);
 
             $q.promise.clearWatch = function () {

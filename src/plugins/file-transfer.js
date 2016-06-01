@@ -10,7 +10,7 @@ angular.module('ngCordova')
 })
 .factory('$cordovaFileTransfer', ['$timeout', '$cordova', function($timeout, $cordova) {
     return {
-        upload: $cordova.$q(function(fileURL, server, options, trustAllHosts, $q) {
+        upload: $cordova.$q(function($q, fileURL, server, options, trustAllHosts) {
             var f = new window.FileTransfer();
 
             f.onprogress = function (progress) {
@@ -25,7 +25,7 @@ angular.module('ngCordova')
 
             return $q.promise;
         }),
-        download: $cordova.$q(function(source, target, trustAllHosts, options, $q) {
+        download: $cordova.$q(function($q, source, target, trustAllHosts, options) {
             var f = new window.FileTransfer();
 
             f.onprogress = function (progress) {

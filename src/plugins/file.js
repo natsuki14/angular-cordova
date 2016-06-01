@@ -16,7 +16,7 @@ angular.module('ngCordova')
     PATH_EXISTS_ERR: 12
 })
 .factory('$cordovaFile', ['$cordova', function($cordova) {
-    var resolveLocalFileSystemURL = $cordova.$q(function(path, $q) {
+    var resolveLocalFileSystemURL = $cordova.$q(function($q, path) {
         if (!path) {
             $q.reject('path is missing');
         }
@@ -32,7 +32,7 @@ angular.module('ngCordova')
         return $q.promise;
     });
 
-    var getFile = $cordova.$q(function(path, fileName, options, $q) {
+    var getFile = $cordova.$q(function($q, path, fileName, options) {
         if (!fileName) {
             $q.reject('fileName is missing');
         }
@@ -50,7 +50,7 @@ angular.module('ngCordova')
         return $q.promise;
     });
 
-    var getDirectory = $cordova.$q(function(path, dirName, options, $q) {
+    var getDirectory = $cordova.$q(function($q, path, dirName, options) {
         if (!dirName) {
             $q.reject('dirName is missing');
         }
@@ -68,7 +68,7 @@ angular.module('ngCordova')
         return $q.promise;
     });
 
-    var createReader = $cordova.$q(function(fileEntry, $q) {
+    var createReader = $cordova.$q(function($q, fileEntry) {
         var reader = new FileReader();
 
         reader.onloadend = function(evt) {
@@ -105,7 +105,7 @@ angular.module('ngCordova')
         return $q.promise;
     });
 
-    var createWriter = $cordova.$q(function(fileEntry, $q) {
+    var createWriter = $cordova.$q(function($q, fileEntry) {
         fileEntry.createWriter(function(writer) {
             writer.onwriteend = function(evt) {
                 if (this.error) {
@@ -149,22 +149,22 @@ angular.module('ngCordova')
                 exclusive: !replace
             });
         },
-        removeFile: $cordova.$q(function(path, fileName, $q) {
+        removeFile: $cordova.$q(function($q, path, fileName) {
             getFile(path, fileName).then(function(fileEntry) {
                 fileEntry.remove($q.resolve, $q.reject);
             }, $q.reject);
         }),
-        removeDir: $cordova.$q(function(path, fileName, $q) {
+        removeDir: $cordova.$q(function($q, path, fileName) {
             getDirectory(path, fileName).then(function(dirEntry) {
                 dirEntry.remove($q.resolve, $q.reject);
             }, $q.reject);
         }),
-        removeRecursively: $cordova.$q(function(path, fileName, $q) {
+        removeRecursively: $cordova.$q(function($q, path, fileName) {
             getDirectory(path, fileName).then(function(dirEntry) {
                 dirEntry.removeRecursively($q.resolve, $q.reject);
             }, $q.reject);
         }),
-        writeFile: $cordova.$q(function(path, fileName, contents, truncate, $q) {
+        writeFile: $cordova.$q(function($q, path, fileName, contents, truncate) {
             return getFile(path, fileName, {
                 create: true,
                 exclusive: false
@@ -175,7 +175,7 @@ angular.module('ngCordova')
                 return writer;
             }, $q.reject);
         }),
-        readAsText: $cordova.$q(function(path, fileName, $q) {
+        readAsText: $cordova.$q(function($q, path, fileName) {
             return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
@@ -183,7 +183,7 @@ angular.module('ngCordova')
                 return reader;
             }, $q.reject);
         }),
-        readAsDataURL: $cordova.$q(function(path, fileName, $q) {
+        readAsDataURL: $cordova.$q(function($q, path, fileName) {
             return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
@@ -191,7 +191,7 @@ angular.module('ngCordova')
                 return reader;
             }, $q.reject);
         }),
-        readAsBinaryString: $cordova.$q(function(path, fileName, $q) {
+        readAsBinaryString: $cordova.$q(function($q, path, fileName) {
             return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
@@ -199,7 +199,7 @@ angular.module('ngCordova')
                 return reader;
             }, $q.reject);
         }),
-        readAsArrayBuffer: $cordova.$q(function(path, fileName, $q) {
+        readAsArrayBuffer: $cordova.$q(function($q, path, fileName) {
             return getFile(path, fileName).then(function(fileEntry) {
                 var reader = createReader(fileEntry);
                 reader.then($q.resolve, $q.reject);
@@ -207,28 +207,28 @@ angular.module('ngCordova')
                 return reader;
             }, $q.reject);
         }),
-        moveFile: $cordova.$q(function(path, fileName, newPath, newFileName, $q) {
+        moveFile: $cordova.$q(function($q, path, fileName, newPath, newFileName) {
             getFile(path, fileName).then(function(fileEntry) {
                 getFile(newPath, newFileName).then(function(newFileEntry) {
                     fileEntry.moveTo(newFileEntry, newFileName, $q.resolve, $q.resolve);
                 }, $q.reject);
             }, $q.reject);
         }),
-        moveDirectory: $cordova.$q(function(path, dirName, newPath, newDirName, $q) {
+        moveDirectory: $cordova.$q(function($q, path, dirName, newPath, newDirName) {
             getDirectory(path, dirName).then(function(dirEntry) {
                 getDirectory(newPath, newDirName).then(function(newDirEntry) {
                     dirEntry.moveTo(newDirEntry, newDirName, $q.resolve, $q.resolve);
                 }, $q.reject);
             }, $q.reject);
         }),
-        copyFile: $cordova.$q(function(path, fileName, newPath, newFileName, $q) {
+        copyFile: $cordova.$q(function($q, path, fileName, newPath, newFileName) {
             getFile(path, fileName).then(function(fileEntry) {
                 getFile(newPath, newFileName).then(function(newFileEntry) {
                     fileEntry.copyTo(newFileEntry, newFileName, $q.resolve, $q.resolve);
                 }, $q.reject);
             }, $q.reject);
         }),
-        copyDirectory: $cordova.$q(function(path, dirName, newPath, newDirName, $q) {
+        copyDirectory: $cordova.$q(function($q, path, dirName, newPath, newDirName) {
             getDirectory(path, dirName).then(function(dirEntry) {
                 getDirectory(newPath, newDirName).then(function(newDirEntry) {
                     dirEntry.copyTo(newDirEntry, newDirName, $q.resolve, $q.resolve);

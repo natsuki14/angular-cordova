@@ -15,34 +15,34 @@ angular.module('ngCordova')
         getLocaleName: $cordova.$q(function($q) {
             window.navigator.globalization.getLocaleName($q.resolve, $q.reject);
         }),
-        dateToString: $cordova.$q(function(date, options, $q) {
+        dateToString: $cordova.$q(function($q, date, options) {
             window.navigator.globalization.dateToString(date, $q.resolve, $q.reject, options);
         }),
-        getCurrencyPattern: $cordova.$q(function(currencyCode, $q) {
+        getCurrencyPattern: $cordova.$q(function($q, currencyCode) {
             window.navigator.globalization.getCurrencyPattern(currencyCode, $q.resolve, $q.reject);
         }),
-        getDateNames: $cordova.$q(function(options, $q) {
+        getDateNames: $cordova.$q(function($q, options) {
             window.navigator.globalization.getDateNames($q.resolve, $q.reject, options);
         }),
-        getDatePattern: $cordova.$q(function(options, $q) {
+        getDatePattern: $cordova.$q(function($q, options) {
             window.navigator.globalization.getDatePattern($q.resolve, $q.reject, options);
         }),
         getFirstDayOfWeek: $cordova.$q(function($q) {
             window.navigator.globalization.getFirstDayOfWeek($q.resolve, $q.reject);
         }),
-        getNumberPattern: $cordova.$q(function(options, $q) {
+        getNumberPattern: $cordova.$q(function($q, options) {
             window.navigator.globalization.getNumberPattern($q.resolve, $q.reject, options);
         }),
-        isDayLightSavingsTime: $cordova.$q(function(date, $q) {
+        isDayLightSavingsTime: $cordova.$q(function($q, date) {
             window.navigator.globalization.isDayLightSavingsTime(date, $q.resolve, $q.reject);
         }),
-        numberToString: $cordova.$q(function(number, options, $q) {
+        numberToString: $cordova.$q(function($q, number, options) {
             window.navigator.globalization.numberToString(number, $q.resolve, $q.reject, options);
         }),
-        stringToDate: $cordova.$q(function(dateString, options, $q) {
+        stringToDate: $cordova.$q(function($q, dateString, options) {
             window.navigator.globalization.stringToDate(dateString, $q.resolve, $q.reject, options);
         }),
-        stringToNumber: $cordova.$q(function(string, options, $q) {
+        stringToNumber: $cordova.$q(function($q, string, options) {
             window.navigator.globalization.stringToNumber(string, $q.resolve, $q.reject, options);
         })
     };

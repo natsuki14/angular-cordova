@@ -20,13 +20,13 @@ angular.module('ngCordova')
         supportedVideoModes: $cordova.$q(function($q) {
             $q.resolve(window.navigator.device.capture.supportedVideoModes);
         }),
-        captureAudio: $cordova.$q(function(options, $q) {
+        captureAudio: $cordova.$q(function($q, options) {
             window.navigator.device.capture.captureAudio($q.resolve, $q.reject, options);
         }),
-        captureImage: $cordova.$q(function(options, $q) {
+        captureImage: $cordova.$q(function($q, options) {
             window.navigator.device.capture.captureImage($q.resolve, $q.reject, options);
         }),
-        captureVideo: $cordova.$q(function(options, $q) {
+        captureVideo: $cordova.$q(function($q, options) {
             window.navigator.device.capture.captureVideo($q.resolve, $q.reject, options);
         })
     };
