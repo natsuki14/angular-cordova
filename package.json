@@ -9,7 +9,7 @@
   },
   "name": "angular-cordova",
   "version": "0.1.4",
-  "description": "A Cordova wrapper for Angular",
+  "description": "Angular wrapper for Cordova",
   "keywords": [
     "angular",
     "angularjs",
