@@ -4,7 +4,7 @@ angular.module('ngCordova')
 .factory('$cordovaFirebase', ['$cordova', function($cordova) {
     return {
         getRegistrationId: $cordova.$q(function($q) {
-            window.firebase.getRegistrationId($q.resolve, $q.reject);
+            window.FirebasePlugin.getRegistrationId($q.resolve, $q.reject);
         })
     };
 }]);
