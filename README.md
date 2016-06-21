@@ -19,10 +19,10 @@ Example:
 var options = {};  // optional
 
 navigator.geolocation.getCurrentPosition(function(response) {
-  console.log("latitude: " + response.coords.latitude);
-  console.log("longitude: " + response.coords.longitude);
+    console.log("latitude: " + response.coords.latitude);
+    console.log("longitude: " + response.coords.longitude);
 }, function(error) {
-  console.error(error);
+    console.error(error);
 }, options);
 ```
 
@@ -31,10 +31,10 @@ Becomes:
 var options = {};  // optional
 
 $cordovaGeolocation.getCurrentPosition(options).then(function(response) {
-  console.log("latitude: " + response.coords.latitude);
-  console.log("longitude: " + response.coords.longitude);
+    console.log("latitude: " + response.coords.latitude);
+    console.log("longitude: " + response.coords.longitude);
 }, function(error) {
-  console.error(error);
+    console.error(error);
 });
 ```
 
