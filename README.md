@@ -4,9 +4,10 @@ This library allows you to access Cordova and Cordova Plugins using Angular.
 All official Cordova Plugins are supported. 3rdparty plugins are available in plugins/3rdparty.
 
 ## Key features
-* Buffers method calls and waits for the deviceready event automatically
-* Call plugins before they are loaded - load your app as fast as possible
 * All methods return promises
+* All method calls are automatically buffered and executed after deviceready
+* Call plugins before they are loaded
+* Load your app as fast as possible, don't wait for deviceready
 
 ## Installation
 1) Include src/cordova.js in your project along with any plugins that you use from src/plugins.
@@ -42,6 +43,7 @@ $cordovaGeolocation.getCurrentPosition().then(function(response) {
     console.error(error);
 });
 ```
+
 ### Event listeners
 
 Example listening to network changes using the network information plugin.
@@ -59,6 +61,17 @@ $cordovaNetworkInformation.$on("offline", function() {
     console.log("device is offline");
 });
 ```
+
+### deviceready
+
+If you still need to hook in to deviceready manually, $cordova also has an $on interface:
+
+```
+$cordova.$on("deviceready", function() {
+    console.log("we have liftoff!");
+});
+```
+
 
 ## Support
 <a href="https://flattr.com/submit/auto?fid=g3ozze&url=https%3A%2F%2Fgithub.com%2Farnesson%2Fangular-cordova" target="_blank"><img src="https://button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
