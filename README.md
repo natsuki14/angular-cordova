@@ -12,25 +12,22 @@ All official Cordova Plugins are supported. 3rdparty plugins are available in pl
 Include src/cordova.js in your project along with any plugins that you use from src/plugins.
 
 ## API
-All apis follow the official specification closely, as outlined [here](https://cordova.apache.org/docs/en/latest/#plugin-apis). The main difference is that all methods return promises and can be called before deviceready.
+All apis follow the official specification closely, as outlined [here](https://cordova.apache.org/docs/en/latest/#plugin-apis). 
+The main difference is that all methods return promises and can be called before deviceready.
 
 Example:
 ```
-var options = {};  // optional
-
 navigator.geolocation.getCurrentPosition(function(response) {
     console.log("latitude: " + response.coords.latitude);
     console.log("longitude: " + response.coords.longitude);
 }, function(error) {
     console.error(error);
-}, options);
+});
 ```
 
 Becomes:
 ```
-var options = {};  // optional
-
-$cordovaGeolocation.getCurrentPosition(options).then(function(response) {
+$cordovaGeolocation.getCurrentPosition().then(function(response) {
     console.log("latitude: " + response.coords.latitude);
     console.log("longitude: " + response.coords.longitude);
 }, function(error) {
