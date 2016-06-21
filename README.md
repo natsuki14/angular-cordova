@@ -19,9 +19,11 @@ angular.module('app', ['ngCordova', ...])
 ## API
 All apis follow the official specification closely, as outlined [here](https://cordova.apache.org/docs/en/latest/#plugin-apis). 
 
-The main difference is that all methods return promises and can be called before deviceready.
+### Calling methods
 
-Example:
+Example getting the current position using the geolocation plugin.
+
+Cordova:
 ```
 navigator.geolocation.getCurrentPosition(function(response) {
     console.log("latitude: " + response.coords.latitude);
@@ -31,13 +33,30 @@ navigator.geolocation.getCurrentPosition(function(response) {
 });
 ```
 
-Becomes:
+Angular:
 ```
 $cordovaGeolocation.getCurrentPosition().then(function(response) {
     console.log("latitude: " + response.coords.latitude);
     console.log("longitude: " + response.coords.longitude);
 }, function(error) {
     console.error(error);
+});
+```
+### Event listeners
+
+Example listening to network changes using the network information plugin.
+
+Cordova:
+```
+document.addEventListener("offline", function() {
+    console.log("device is offline");
+}, false);
+```
+
+Angular:
+```
+$cordovaNetworkInformation.$on("offline", function() {
+    console.log("device is offline");
 });
 ```
 
