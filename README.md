@@ -9,10 +9,16 @@ All official Cordova Plugins are supported. 3rdparty plugins are available in pl
 * All methods return promises
 
 ## Installation
-Include src/cordova.js in your project along with any plugins that you use from src/plugins.
+1) Include src/cordova.js in your project along with any plugins that you use from src/plugins.
+
+2) Add ngCordova to your app:
+```
+angular.module('app', ['ngCordova', ...])
+```
 
 ## API
 All apis follow the official specification closely, as outlined [here](https://cordova.apache.org/docs/en/latest/#plugin-apis). 
+
 The main difference is that all methods return promises and can be called before deviceready.
 
 Example:
