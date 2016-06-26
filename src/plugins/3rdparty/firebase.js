@@ -5,6 +5,9 @@ angular.module('ngCordova')
     return {
         getRegistrationId: $cordova.$q(function($q) {
             window.FirebasePlugin.getRegistrationId($q.resolve, $q.reject);
+        }),
+        logEvent: $cordova.$q(function($q, key, value) {
+            window.FirebasePlugin.logEvent(key, value, $q.resolve, $q.reject);
         })
     };
 }]);
