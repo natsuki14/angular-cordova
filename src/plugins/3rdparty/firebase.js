@@ -9,6 +9,12 @@ angular.module('ngCordova')
         grantPermission: $cordova.$q(function($q) {
             window.FirebasePlugin.grantPermission($q.resolve, $q.reject);
         }),
+        setBadgeNumber: $cordova.$q(function($q, number) {
+            window.FirebasePlugin.setBadgeNumber(number, $q.resolve, $q.reject);
+        }),
+        getBadgeNumber: $cordova.$q(function($q) {
+            window.FirebasePlugin.getBadgeNumber($q.resolve, $q.reject);
+        }),
         subscribe: $cordova.$q(function($q, topic) {
             window.FirebasePlugin.subscribe(topic, $q.resolve, $q.reject);
         }),
