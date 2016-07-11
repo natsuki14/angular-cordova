@@ -23,6 +23,27 @@ angular.module('ngCordova')
         }),
         logEvent: $cordova.$q(function($q, key, value) {
             window.FirebasePlugin.logEvent(key, value, $q.resolve, $q.reject);
+        }),
+        fetch: $cordova.$q(function($q) {
+            window.FirebasePlugin.fetch($q.resolve, $q.reject);
+        }),
+        activateFetched: $cordova.$q(function($q) {
+            window.FirebasePlugin.activateFetched($q.resolve, $q.reject);
+        }),
+        getValue: $cordova.$q(function($q, key) {
+            window.FirebasePlugin.getValue(key, $q.resolve, $q.reject);
+        }),
+        getByteArray: $cordova.$q(function($q, key) {
+            window.FirebasePlugin.getByteArray(key, $q.resolve, $q.reject);
+        }),
+        getInfo: $cordova.$q(function($q) {
+            window.FirebasePlugin.getInfo($q.resolve, $q.reject);
+        }),
+        setConfigSettings: $cordova.$q(function($q, settings) {
+            window.FirebasePlugin.setConfigSettings(settings, $q.resolve, $q.reject);
+        }),
+        setDefaults: $cordova.$q(function($q, defaults) {
+            window.FirebasePlugin.setConfigSettings(defaults, $q.resolve, $q.reject);
         })
     };
 }]);
