@@ -8,15 +8,10 @@
     "url": "https://github.com/arnesson/angular-cordova"
   },
   "name": "angular-cordova",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Angular wrapper for Cordova",
   "keywords": [
-    "angular",
-    "angularjs",
-    "cordova",
-    "ngCordova"
-  ],
-  "devDependencies": {
-    "eslint": "2.8.0"
-  }
+    "angular2",
+    "cordova"
+  ]
 }

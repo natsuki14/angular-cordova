@@ -1,4 +1,24 @@
 // https://github.com/arnesson/cordova-plugin-facebook
+import { CordovaService } from '../../';
+
+export class CordovaFacebookService extends CordovaService {
+    login(permissions?: Array<any>): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.login(permissions, resolve, reject);
+            });
+        });
+    }
+    getLoginStatus(): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.getLoginStatus(resolve, reject);
+            });
+        });
+    }
+}
+
+/*
 'use strict';
 angular.module('ngCordova')
 .factory('$cordovaFacebook', ['$cordova', function($cordova) {
@@ -38,3 +58,4 @@ angular.module('ngCordova')
         })
     };
 }]);
+*/

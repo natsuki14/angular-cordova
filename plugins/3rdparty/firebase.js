@@ -21,8 +21,8 @@ angular.module('ngCordova')
         unsubscribe: $cordova.$q(function($q, topic) {
             window.FirebasePlugin.unsubscribe(topic, $q.resolve, $q.reject);
         }),
-        logEvent: $cordova.$q(function($q, name, params) {
-            window.FirebasePlugin.logEvent(name, params, $q.resolve, $q.reject);
+        logEvent: $cordova.$q(function($q, key, value) {
+            window.FirebasePlugin.logEvent(key, value, $q.resolve, $q.reject);
         }),
         fetch: $cordova.$q(function($q) {
             window.FirebasePlugin.fetch($q.resolve, $q.reject);
