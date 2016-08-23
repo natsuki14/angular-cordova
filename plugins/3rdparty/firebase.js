@@ -1,49 +1,114 @@
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 // https://github.com/arnesson/cordova-plugin-firebase
-'use strict';
-angular.module('ngCordova')
-.factory('$cordovaFirebase', ['$cordova', function($cordova) {
-    return {
-        getInstanceId: $cordova.$q(function($q) {
-            window.FirebasePlugin.getInstanceId($q.resolve, $q.reject);
-        }),
-        grantPermission: $cordova.$q(function($q) {
-            window.FirebasePlugin.grantPermission($q.resolve, $q.reject);
-        }),
-        setBadgeNumber: $cordova.$q(function($q, number) {
-            window.FirebasePlugin.setBadgeNumber(number, $q.resolve, $q.reject);
-        }),
-        getBadgeNumber: $cordova.$q(function($q) {
-            window.FirebasePlugin.getBadgeNumber($q.resolve, $q.reject);
-        }),
-        subscribe: $cordova.$q(function($q, topic) {
-            window.FirebasePlugin.subscribe(topic, $q.resolve, $q.reject);
-        }),
-        unsubscribe: $cordova.$q(function($q, topic) {
-            window.FirebasePlugin.unsubscribe(topic, $q.resolve, $q.reject);
-        }),
-        logEvent: $cordova.$q(function($q, key, value) {
-            window.FirebasePlugin.logEvent(key, value, $q.resolve, $q.reject);
-        }),
-        fetch: $cordova.$q(function($q) {
-            window.FirebasePlugin.fetch($q.resolve, $q.reject);
-        }),
-        activateFetched: $cordova.$q(function($q) {
-            window.FirebasePlugin.activateFetched($q.resolve, $q.reject);
-        }),
-        getValue: $cordova.$q(function($q, key) {
-            window.FirebasePlugin.getValue(key, $q.resolve, $q.reject);
-        }),
-        getByteArray: $cordova.$q(function($q, key) {
-            window.FirebasePlugin.getByteArray(key, $q.resolve, $q.reject);
-        }),
-        getInfo: $cordova.$q(function($q) {
-            window.FirebasePlugin.getInfo($q.resolve, $q.reject);
-        }),
-        setConfigSettings: $cordova.$q(function($q, settings) {
-            window.FirebasePlugin.setConfigSettings(settings, $q.resolve, $q.reject);
-        }),
-        setDefaults: $cordova.$q(function($q, defaults) {
-            window.FirebasePlugin.setConfigSettings(defaults, $q.resolve, $q.reject);
-        })
+var cordova_1 = require('../../cordova');
+var CordovaFirebaseService = (function (_super) {
+    __extends(CordovaFirebaseService, _super);
+    function CordovaFirebaseService() {
+        _super.apply(this, arguments);
+    }
+    CordovaFirebaseService.prototype.getInstanceId = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.getInstanceId(resolve, reject);
+            });
+        });
     };
-}]);
+    CordovaFirebaseService.prototype.grantPermission = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.grantPermission(resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.setBadgeNumber = function (number) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.setBadgeNumber(number, resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.getBadgeNumber = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.getBadgeNumber(resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.subscribe = function (topic) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.subscribe(topic, resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.unsubscribe = function (topic) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.unsubscribe(topic, resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.logEvent = function (name, params) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.logEvent(name, params, resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.fetch = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.fetch(resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.activateFetched = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.activateFetched(resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.getValue = function (key) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.getValue(key, resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.getByteArray = function (key) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.getByteArray(key, resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.getInfo = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.getInfo(resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.setConfigSettings = function (settings) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.setConfigSettings(settings, resolve, reject);
+            });
+        });
+    };
+    CordovaFirebaseService.prototype.setDefaults = function (defaults, namespace) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                window.FirebasePlugin.setDefaults(defaults, namespace, resolve, reject);
+            });
+        });
+    };
+    return CordovaFirebaseService;
+}(cordova_1.CordovaService));
+exports.CordovaFirebaseService = CordovaFirebaseService;

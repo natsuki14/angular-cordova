@@ -1,11 +1,32 @@
 // https://github.com/arnesson/cordova-plugin-facebook
-import { CordovaService } from '../../';
+import { CordovaService } from '../../cordova';
 
 export class CordovaFacebookService extends CordovaService {
     login(permissions?: Array<any>): Promise<any> {
         return this.deviceready().then((): Promise<any> => {
             return new Promise<any>((resolve, reject): void => {
                 (<any>window).facebookConnectPlugin.login(permissions, resolve, reject);
+            });
+        });
+    }
+    showDialog(options?: Array<any>): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.showDialog(options, resolve, reject);
+            });
+        });
+    }
+    api(path: string, permissions?: Array<any>): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.api(path, permissions, resolve, reject);
+            });
+        });
+    }
+    getAccessToken(): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.getAccessToken(resolve, reject);
             });
         });
     }
@@ -16,46 +37,46 @@ export class CordovaFacebookService extends CordovaService {
             });
         });
     }
+    logout(): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.logout(resolve, reject);
+            });
+        });
+    }
+    logEvent(name: string, params: Array<any>, value: number): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.logEvent(name, params, value, resolve, reject);
+            });
+        });
+    }
+    logPurchase(value: number, currency: string): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.logPurchase(value, currency, resolve, reject);
+            });
+        });
+    }
+    appInvite(options?: Array<any>): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.appInvite(options, resolve, reject);
+            });
+        });
+    }
+    getDeferredApplink(): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.getDeferredApplink(resolve, reject);
+            });
+        });
+    }
+    activateApp(): Promise<any> {
+        return this.deviceready().then((): Promise<any> => {
+            return new Promise<any>((resolve, reject): void => {
+                (<any>window).facebookConnectPlugin.activateApp(resolve, reject);
+            });
+        });
+    }
 }
-
-/*
-'use strict';
-angular.module('ngCordova')
-.factory('$cordovaFacebook', ['$cordova', function($cordova) {
-    return {
-        login: $cordova.$q(function($q, permissions) {
-            window.facebookConnectPlugin.login(permissions, $q.resolve, $q.reject);
-        }),
-        showDialog: $cordova.$q(function($q, options) {
-            window.facebookConnectPlugin.showDialog(options, $q.resolve, $q.reject);
-        }),
-        api: $cordova.$q(function($q, path, permissions) {
-            window.facebookConnectPlugin.api(path, permissions, $q.resolve, $q.reject);
-        }),
-        getAccessToken: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.getAccessToken($q.resolve, $q.reject);
-        }),
-        getLoginStatus: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.getLoginStatus($q.resolve, $q.reject);
-        }),
-        logout: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.logout($q.resolve, $q.reject);
-        }),
-        logEvent: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.logEvent($q.resolve, $q.reject);
-        }),
-        logPurchase: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.logPurchase($q.resolve, $q.reject);
-        }),
-        appInvite: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.appInvite($q.resolve, $q.reject);
-        }),
-        getDeferredApplink: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.getDeferredApplink($q.resolve, $q.reject);
-        }),
-        activateApp: $cordova.$q(function($q) {
-            window.facebookConnectPlugin.activateApp($q.resolve, $q.reject);
-        })
-    };
-}]);
-*/

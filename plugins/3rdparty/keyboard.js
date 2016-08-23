@@ -1,38 +1,70 @@
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 // cordova-plugin-keyboard
-'use strict';
-angular.module('ngCordova')
-.factory('$cordovaKeyboard', ['$cordova', function($cordova) {
-    return {
-        shrinkView: $cordova.$q(function($q, bool) {
-            $q.resolve(window.Keyboard.shrinkView(bool));
-        }),
-        hideFormAccessoryBar: $cordova.$q(function($q, bool) {
-            $q.resolve(window.Keyboard.hideFormAccessoryBar(bool));
-        }),
-        disableScrollingInShrinkView: $cordova.$q(function($q, bool) {
-            $q.resolve(window.Keyboard.disableScrollingInShrinkView(bool));
-        }),
-        hide: $cordova.$q(function($q) {
-            $q.resolve(window.Keyboard.hide());
-        }),
-        show: $cordova.$q(function($q) {
-            $q.resolve(window.Keyboard.show());
-        }),
-        isVisible: $cordova.$q(function($q) {
-            $q.resolve(window.Keyboard.isVisible);
-        }),
-        automaticScrollToTopOnHiding: $cordova.$q(function($q, bool) {
-            $q.resolve(window.Keyboard.automaticScrollToTopOnHiding = bool);
-        }),
-        $on: function(event, fn) {
-            return $cordova.$on(event, fn, '$cordovaKeyboard');
-        }
+var cordova_1 = require('../../cordova');
+var CordovaKeyboardService = (function (_super) {
+    __extends(CordovaKeyboardService, _super);
+    function CordovaKeyboardService() {
+        _super.call(this);
+        this.register(window, 'CordovaKeyboardService:keyboardDidShow');
+        this.register(window, 'CordovaKeyboardService:keyboardDidHide');
+        this.register(window, 'CordovaKeyboardService:keyboardWillShow');
+        this.register(window, 'CordovaKeyboardService:keyboardWillHide');
+        this.register(window, 'CordovaKeyboardService:keyboardHeightWillChange');
+    }
+    CordovaKeyboardService.prototype.shrinkView = function (bool) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                resolve(window.Keyboard.shrinkView(bool));
+            });
+        });
     };
-}])
-.config(['$cordovaProvider', function ($cordovaProvider) {
-    $cordovaProvider.register(window, '$cordovaKeyboard:keyboardDidShow');
-    $cordovaProvider.register(window, '$cordovaKeyboard:keyboardDidHide');
-    $cordovaProvider.register(window, '$cordovaKeyboard:keyboardWillShow');
-    $cordovaProvider.register(window, '$cordovaKeyboard:keyboardWillHide');
-    $cordovaProvider.register(window, '$cordovaKeyboard:keyboardHeightWillChange');
-}]);
+    CordovaKeyboardService.prototype.hideFormAccessoryBar = function (bool) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                resolve(window.Keyboard.hideFormAccessoryBar(bool));
+            });
+        });
+    };
+    CordovaKeyboardService.prototype.disableScrollingInShrinkView = function (bool) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                resolve(window.Keyboard.disableScrollingInShrinkView(bool));
+            });
+        });
+    };
+    CordovaKeyboardService.prototype.hide = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                resolve(window.Keyboard.hide());
+            });
+        });
+    };
+    CordovaKeyboardService.prototype.show = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                resolve(window.Keyboard.show());
+            });
+        });
+    };
+    CordovaKeyboardService.prototype.isVisible = function () {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                resolve(window.Keyboard.isVisible());
+            });
+        });
+    };
+    CordovaKeyboardService.prototype.automaticScrollToTopOnHiding = function (bool) {
+        return this.deviceready().then(function () {
+            return new Promise(function (resolve, reject) {
+                resolve(window.Keyboard.automaticScrollToTopOnHiding = bool);
+            });
+        });
+    };
+    return CordovaKeyboardService;
+}(cordova_1.CordovaService));
+exports.CordovaKeyboardService = CordovaKeyboardService;
