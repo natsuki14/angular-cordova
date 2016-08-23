@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 // cordova-plugin-statusbar
-var cordova_1 = require('../cordova');
+var cordova_service_1 = require('../cordova.service');
 var CordovaStatusbarService = (function (_super) {
     __extends(CordovaStatusbarService, _super);
     function CordovaStatusbarService() {
@@ -82,5 +82,5 @@ var CordovaStatusbarService = (function (_super) {
         });
     };
     return CordovaStatusbarService;
-}(cordova_1.CordovaService));
+}(cordova_service_1.CordovaService));
 exports.CordovaStatusbarService = CordovaStatusbarService;

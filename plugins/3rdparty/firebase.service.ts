@@ -1,5 +1,5 @@
 // https://github.com/arnesson/cordova-plugin-firebase
-import { CordovaService } from '../../cordova';
+import { CordovaService } from '../../cordova.service';
 
 export class CordovaFirebaseService extends CordovaService {
     getInstanceId(): Promise<any> {

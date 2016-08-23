@@ -1,5 +1,5 @@
 // https://github.com/arnesson/cordova-plugin-facebook
-import { CordovaService } from '../../cordova';
+import { CordovaService } from '../../cordova.service';
 
 export class CordovaFacebookService extends CordovaService {
     login(permissions?: Array<any>): Promise<any> {

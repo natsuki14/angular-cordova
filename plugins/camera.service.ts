@@ -1,5 +1,5 @@
 // cordova-plugin-camera
-import { CordovaService } from '../cordova';
+import { CordovaService } from '../cordova.service';
 
 export class CordovaCameraDestinationType {
     public static get DATA_URL(): number { return 0; }

@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 // cordova-plugin-keyboard
-var cordova_1 = require('../../cordova');
+var cordova_service_1 = require('../../cordova.service');
 var CordovaKeyboardService = (function (_super) {
     __extends(CordovaKeyboardService, _super);
     function CordovaKeyboardService() {
@@ -66,5 +66,5 @@ var CordovaKeyboardService = (function (_super) {
         });
     };
     return CordovaKeyboardService;
-}(cordova_1.CordovaService));
+}(cordova_service_1.CordovaService));
 exports.CordovaKeyboardService = CordovaKeyboardService;

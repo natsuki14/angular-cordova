@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 // cordova-plugin-camera
-var cordova_1 = require('../cordova');
+var cordova_service_1 = require('../cordova.service');
 var CordovaCameraDestinationType = (function () {
     function CordovaCameraDestinationType() {
     }
@@ -152,5 +152,5 @@ var CordovaCameraService = (function (_super) {
         });
     };
     return CordovaCameraService;
-}(cordova_1.CordovaService));
+}(cordova_service_1.CordovaService));
 exports.CordovaCameraService = CordovaCameraService;

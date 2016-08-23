@@ -1,5 +1,5 @@
 // cordova-plugin-statusbar
-import { CordovaService } from '../cordova';
+import { CordovaService } from '../cordova.service';
 
 export class CordovaStatusbarService extends CordovaService {
     overlaysWebView(bool: boolean): Promise<any> {

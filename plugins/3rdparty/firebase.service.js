@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 // https://github.com/arnesson/cordova-plugin-firebase
-var cordova_1 = require('../../cordova');
+var cordova_service_1 = require('../../cordova.service');
 var CordovaFirebaseService = (function (_super) {
     __extends(CordovaFirebaseService, _super);
     function CordovaFirebaseService() {
@@ -110,5 +110,5 @@ var CordovaFirebaseService = (function (_super) {
         });
     };
     return CordovaFirebaseService;
-}(cordova_1.CordovaService));
+}(cordova_service_1.CordovaService));
 exports.CordovaFirebaseService = CordovaFirebaseService;

@@ -1,5 +1,5 @@
 // cordova-plugin-keyboard
-import { CordovaService } from '../../cordova';
+import { CordovaService } from '../../cordova.service';
 
 export class CordovaKeyboardService extends CordovaService {
     constructor() {

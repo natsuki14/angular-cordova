@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 // https://github.com/arnesson/cordova-plugin-facebook
-var cordova_1 = require('../../cordova');
+var cordova_service_1 = require('../../cordova.service');
 var CordovaFacebookService = (function (_super) {
     __extends(CordovaFacebookService, _super);
     function CordovaFacebookService() {
@@ -89,5 +89,5 @@ var CordovaFacebookService = (function (_super) {
         });
     };
     return CordovaFacebookService;
-}(cordova_1.CordovaService));
+}(cordova_service_1.CordovaService));
 exports.CordovaFacebookService = CordovaFacebookService;
