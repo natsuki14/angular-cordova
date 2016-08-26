@@ -4,7 +4,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-// https://github.com/arnesson/cordova-plugin-facebook
+// https://github.com/jeduan/cordova-plugin-facebook4
 var cordova_service_1 = require('../../cordova.service');
 var CordovaFacebookService = (function (_super) {
     __extends(CordovaFacebookService, _super);

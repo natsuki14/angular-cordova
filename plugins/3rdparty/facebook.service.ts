@@ -1,4 +1,4 @@
-// https://github.com/arnesson/cordova-plugin-facebook
+// https://github.com/jeduan/cordova-plugin-facebook4
 import { CordovaService } from '../../cordova.service';
 
 export class CordovaFacebookService extends CordovaService {
