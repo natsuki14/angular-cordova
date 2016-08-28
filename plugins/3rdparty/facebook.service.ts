@@ -9,7 +9,7 @@ export class CordovaFacebookService extends CordovaService {
             });
         });
     }
-    showDialog(options?: Array<any>): Promise<any> {
+    showDialog(options?: Object): Promise<any> {
         return this.deviceready().then((): Promise<any> => {
             return new Promise<any>((resolve, reject): void => {
                 (<any>window).facebookConnectPlugin.showDialog(options, resolve, reject);
@@ -44,7 +44,7 @@ export class CordovaFacebookService extends CordovaService {
             });
         });
     }
-    logEvent(name: string, params: Array<any>, value: number): Promise<any> {
+    logEvent(name: string, params?: Object, value?: number): Promise<any> {
         return this.deviceready().then((): Promise<any> => {
             return new Promise<any>((resolve, reject): void => {
                 (<any>window).facebookConnectPlugin.logEvent(name, params, value, resolve, reject);
@@ -58,7 +58,7 @@ export class CordovaFacebookService extends CordovaService {
             });
         });
     }
-    appInvite(options?: Array<any>): Promise<any> {
+    appInvite(options?: Object): Promise<any> {
         return this.deviceready().then((): Promise<any> => {
             return new Promise<any>((resolve, reject): void => {
                 (<any>window).facebookConnectPlugin.appInvite(options, resolve, reject);

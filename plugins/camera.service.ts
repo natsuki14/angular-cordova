@@ -33,7 +33,7 @@ export class CordovaCameraCameraDirection {
 }
 
 export class CordovaCameraService extends CordovaService {
-    getPicture(options?: Array<any>): Promise<any> {
+    getPicture(options?: Object): Promise<any> {
         return this.deviceready().then((): Promise<any> => {
             return new Promise<any>((resolve, reject): void => {
                 (<any>window).navigator.camera.getPicture(resolve, reject, options);
