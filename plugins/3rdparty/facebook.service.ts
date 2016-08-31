@@ -1,82 +1,101 @@
-// https://github.com/jeduan/cordova-plugin-facebook4
-import { CordovaService } from '../../cordova.service';
+// cordova-plugin-facebook4
+import { Injectable, NgZone } from '@angular/core';
 
-export class CordovaFacebookService extends CordovaService {
-    login(permissions?: Array<any>): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.login(permissions, resolve, reject);
-            });
-        });
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
+
+import { Cordova, ZoneObservable } from '../../cordova';
+
+@Injectable()
+export class FacebookService {
+    constructor(private zone: NgZone) {}
+
+    login(permissions?: Array<any>): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.login(permissions, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    showDialog(options?: Object): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.showDialog(options, resolve, reject);
-            });
-        });
+    showDialog(options?: Object): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.showDialog(options, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    api(path: string, permissions?: Array<any>): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.api(path, permissions, resolve, reject);
-            });
-        });
+    api(path: string, permissions?: Array<any>): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.api(path, permissions, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    getAccessToken(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.getAccessToken(resolve, reject);
-            });
-        });
+    getAccessToken(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.getAccessToken((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    getLoginStatus(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.getLoginStatus(resolve, reject);
-            });
-        });
+    getLoginStatus(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.getLoginStatus((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    logout(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.logout(resolve, reject);
-            });
-        });
+    logout(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.logout((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    logEvent(name: string, params?: Object, value?: number): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.logEvent(name, params, value, resolve, reject);
-            });
-        });
+    logEvent(name: string, params?: Object, value?: number): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.logEvent(name, params, value, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    logPurchase(value: number, currency: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.logPurchase(value, currency, resolve, reject);
-            });
-        });
+    logPurchase(value: number, currency: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.logPurchase(value, currency, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    appInvite(options?: Object): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.appInvite(options, resolve, reject);
-            });
-        });
+    appInvite(options?: Object): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.appInvite(options, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    getDeferredApplink(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.getDeferredApplink(resolve, reject);
-            });
-        });
+    getDeferredApplink(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.getDeferredApplink((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    activateApp(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).facebookConnectPlugin.activateApp(resolve, reject);
-            });
-        });
+    activateApp(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).facebookConnectPlugin.activateApp((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
 }

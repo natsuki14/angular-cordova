@@ -1,86 +1,65 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 // cordova-plugin-statusbar
-var cordova_service_1 = require('../cordova.service');
-var CordovaStatusbarService = (function (_super) {
-    __extends(CordovaStatusbarService, _super);
-    function CordovaStatusbarService() {
-        _super.apply(this, arguments);
+var core_1 = require('@angular/core');
+require('rxjs/add/operator/mergeMap');
+var cordova_1 = require('../cordova');
+var StatusbarService = (function () {
+    function StatusbarService(zone) {
+        this.zone = zone;
     }
-    CordovaStatusbarService.prototype.overlaysWebView = function (bool) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.overlaysWebView(bool));
-            });
-        });
+    StatusbarService.prototype.overlaysWebView = function (bool) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.overlaysWebView(bool)); });
     };
-    CordovaStatusbarService.prototype.styleDefault = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.styleDefault());
-            });
-        });
+    StatusbarService.prototype.styleDefault = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.styleDefault()); });
     };
-    CordovaStatusbarService.prototype.styleLightContent = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.styleLightContent());
-            });
-        });
+    StatusbarService.prototype.styleLightContent = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.styleLightContent()); });
     };
-    CordovaStatusbarService.prototype.styleBlackTranslucent = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.styleBlackTranslucent());
-            });
-        });
+    StatusbarService.prototype.styleBlackTranslucent = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.styleBlackTranslucent()); });
     };
-    CordovaStatusbarService.prototype.styleBlackOpaque = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.styleBlackOpaque());
-            });
-        });
+    StatusbarService.prototype.styleBlackOpaque = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.styleBlackOpaque()); });
     };
-    CordovaStatusbarService.prototype.backgroundColorByName = function (color) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.backgroundColorByName(color));
-            });
-        });
+    StatusbarService.prototype.backgroundColorByName = function (color) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.backgroundColorByName(color)); });
     };
-    CordovaStatusbarService.prototype.backgroundColorByHexString = function (colorHex) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.backgroundColorByHexString(colorHex));
-            });
-        });
+    StatusbarService.prototype.backgroundColorByHexString = function (colorHex) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.backgroundColorByHexString(colorHex)); });
     };
-    CordovaStatusbarService.prototype.hide = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.hide());
-            });
-        });
+    StatusbarService.prototype.hide = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.hide()); });
     };
-    CordovaStatusbarService.prototype.show = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.show());
-            });
-        });
+    StatusbarService.prototype.show = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.show()); });
     };
-    CordovaStatusbarService.prototype.isVisible = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                resolve(window.StatusBar.isVisible());
-            });
-        });
+    StatusbarService.prototype.isVisible = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.of(_this.zone, window.StatusBar.isVisible()); });
     };
-    return CordovaStatusbarService;
-}(cordova_service_1.CordovaService));
-exports.CordovaStatusbarService = CordovaStatusbarService;
+    StatusbarService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [core_1.NgZone])
+    ], StatusbarService);
+    return StatusbarService;
+}());
+exports.StatusbarService = StatusbarService;

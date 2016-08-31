@@ -1,50 +1,60 @@
 // cordova-plugin-camera
-import { CordovaService } from '../cordova.service';
+import { Injectable, NgZone } from '@angular/core';
 
-export class CordovaCameraDestinationType {
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
+
+import { Cordova, ZoneObservable } from '../cordova';
+
+export class CameraDestinationType {
     public static get DATA_URL(): number { return 0; }
     public static get FILE_URI(): number { return 1; }
     public static get NATIVE_URI(): number { return 2; }
 }
-export class CordovaCameraEncodingType {
+export class CameraEncodingType {
     public static get JPEG(): number { return 0; }
     public static get PNG(): number { return 1; }
 }
-export class CordovaCameraMediaType {
+export class CameraMediaType {
     public static get PICTURE(): number { return 0; }
     public static get VIDEO(): number { return 1; }
     public static get ALLMEDIA(): number { return 2; }
 }
-export class CordovaCameraPictureSourceType {
+export class CameraPictureSourceType {
     public static get PHOTOLIBRARY(): number { return 0; }
     public static get CAMERA(): number { return 1; }
     public static get SAVEDPHOTOALBUM(): number { return 2; }
 }
-export class CordovaCameraPopoverArrowDirection {
+export class CameraPopoverArrowDirection {
     public static get ARROW_UP(): number { return 1; }
     public static get ARROW_DOWN(): number { return 2; }
     public static get ARROW_LEFT(): number { return 4; }
     public static get ARROW_RIGHT(): number { return 8; }
     public static get ARROW_ANY(): number { return 15; }
 }
-export class CordovaCameraCameraDirection {
+export class CameraCameraDirection {
     public static get BACK(): number { return 0; }
     public static get FRONT(): number { return 1; }
 }
 
-export class CordovaCameraService extends CordovaService {
-    getPicture(options?: Object): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).navigator.camera.getPicture(resolve, reject, options);
-            });
-        });
+@Injectable()
+export class CameraService {
+    constructor(private zone: NgZone) {}
+
+    getPicture(options?: Object): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).navigator.camera.getPicture((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error, options);
+        }));
     }
-    cleanup(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).navigator.camera.cleanup(resolve, reject);
-            });
-        });
+    cleanup(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).navigator.camera.cleanup((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
 }

@@ -1,103 +1,125 @@
-// https://github.com/arnesson/cordova-plugin-firebase
-import { CordovaService } from '../../cordova.service';
+// cordova-plugin-firebase
+import { Injectable, NgZone } from '@angular/core';
 
-export class CordovaFirebaseService extends CordovaService {
-    getInstanceId(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.getInstanceId(resolve, reject);
-            });
-        });
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
+
+import { Cordova, ZoneObservable } from '../../cordova';
+
+@Injectable()
+export class FirebaseService {
+    constructor(private zone: NgZone) {}
+
+    getInstanceId(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.getInstanceId((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    grantPermission(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.grantPermission(resolve, reject);
-            });
-        });
+    grantPermission(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.grantPermission((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    setBadgeNumber(number: number): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.setBadgeNumber(number, resolve, reject);
-            });
-        });
+    setBadgeNumber(number: number): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.setBadgeNumber(number, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    getBadgeNumber(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.getBadgeNumber(resolve, reject);
-            });
-        });
+    getBadgeNumber(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.getBadgeNumber((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    subscribe(topic: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.subscribe(topic, resolve, reject);
-            });
-        });
+    subscribe(topic: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.subscribe(topic, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    unsubscribe(topic: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.unsubscribe(topic, resolve, reject);
-            });
-        });
+    unsubscribe(topic: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.unsubscribe(topic, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    logEvent(name: string, params: Object): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.logEvent(name, params, resolve, reject);
-            });
-        });
+    logEvent(name: string, params: Object): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.logEvent(name, params, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    fetch(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.fetch(resolve, reject);
-            });
-        });
+    fetch(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.fetch((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    activateFetched(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.activateFetched(resolve, reject);
-            });
-        });
+    activateFetched(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.activateFetched((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    getValue(key: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.getValue(key, resolve, reject);
-            });
-        });
+    getValue(key: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.getValue(key, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    getByteArray(key: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.getByteArray(key, resolve, reject);
-            });
-        });
+    getByteArray(key: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.getByteArray(key, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    getInfo(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.getInfo(resolve, reject);
-            });
-        });
+    getInfo(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.getInfo((res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    setConfigSettings(settings: Object): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.setConfigSettings(settings, resolve, reject);
-            });
-        });
+    setConfigSettings(settings: Object): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.setConfigSettings(settings, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
-    setDefaults(defaults: Object, namespace?: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                (<any>window).FirebasePlugin.setDefaults(defaults, namespace, resolve, reject);
-            });
-        });
+    setDefaults(defaults: Object, namespace?: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.setDefaults(defaults, namespace, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
     }
 }

@@ -1,63 +1,74 @@
 // cordova-plugin-keyboard
-import { CordovaService } from '../../cordova.service';
+import { Injectable, NgZone } from '@angular/core';
 
-export class CordovaKeyboardService extends CordovaService {
-    constructor() {
-        super();
-        this.register(window, 'CordovaKeyboardService:keyboardDidShow');
-        this.register(window, 'CordovaKeyboardService:keyboardDidHide');
-        this.register(window, 'CordovaKeyboardService:keyboardWillShow');
-        this.register(window, 'CordovaKeyboardService:keyboardWillHide');
-        this.register(window, 'CordovaKeyboardService:keyboardHeightWillChange');
-    }
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
 
-    shrinkView(bool: boolean): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).Keyboard.shrinkView(bool));
-            });
+import { Cordova, ZoneObservable } from '../../cordova';
+
+@Injectable()
+export class KeyboardService {
+    constructor(private zone: NgZone) {}
+
+    keyboardDidShow(): Observable<any> {
+        return ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).addEventListener('keyboardDidShow', observer.next, false);
+            return () => {
+                (<any>window).removeEventListener('keyboardDidShow', observer.next, false);
+            };
         });
     }
-    hideFormAccessoryBar(bool: boolean): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).Keyboard.hideFormAccessoryBar(bool));
-            });
+    keyboardDidHide(): Observable<any> {
+        return ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).addEventListener('keyboardDidHide', observer.next, false);
+            return () => {
+                (<any>window).removeEventListener('keyboardDidHide', observer.next, false);
+            };
         });
     }
-    disableScrollingInShrinkView(bool: boolean): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).Keyboard.disableScrollingInShrinkView(bool));
-            });
+    keyboardWillShow(): Observable<any> {
+        return ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).addEventListener('keyboardWillShow', observer.next, false);
+            return () => {
+                (<any>window).removeEventListener('keyboardWillShow', observer.next, false);
+            };
         });
     }
-    hide(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).Keyboard.hide());
-            });
+    keyboardWillHide(): Observable<any> {
+        return ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).addEventListener('keyboardWillHide', observer.next, false);
+            return () => {
+                (<any>window).removeEventListener('keyboardWillHide', observer.next, false);
+            };
         });
     }
-    show(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).Keyboard.show());
-            });
+    keyboardHeightWillChange(): Observable<any> {
+        return ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).addEventListener('keyboardHeightWillChange', observer.next, false);
+            return () => {
+                (<any>window).removeEventListener('keyboardHeightWillChange', observer.next, false);
+            };
         });
     }
-    isVisible(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).Keyboard.isVisible());
-            });
-        });
+    shrinkView(bool: boolean): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).Keyboard.shrinkView(bool)));
     }
-    automaticScrollToTopOnHiding(bool: boolean): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).Keyboard.automaticScrollToTopOnHiding = bool);
-            });
-        });
+    hideFormAccessoryBar(bool: boolean): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).Keyboard.hideFormAccessoryBar(bool)));
+    }
+    disableScrollingInShrinkView(bool: boolean): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).Keyboard.disableScrollingInShrinkView(bool)));
+    }
+    hide(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).Keyboard.hide()));
+    }
+    show(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).Keyboard.show()));
+    }
+    isVisible(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).Keyboard.isVisible()));
+    }
+    automaticScrollToTopOnHiding(bool: boolean): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).Keyboard.automaticScrollToTopOnHiding = bool));
     }
 }

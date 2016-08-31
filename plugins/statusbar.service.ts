@@ -1,75 +1,43 @@
 // cordova-plugin-statusbar
-import { CordovaService } from '../cordova.service';
+import { Injectable, NgZone } from '@angular/core';
 
-export class CordovaStatusbarService extends CordovaService {
-    overlaysWebView(bool: boolean): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.overlaysWebView(bool));
-            });
-        });
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/mergeMap';
+
+import { Cordova, ZoneObservable } from '../cordova';
+
+@Injectable()
+export class StatusbarService {
+    constructor(private zone: NgZone) {}
+
+    overlaysWebView(bool: boolean): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.overlaysWebView(bool)));
     }
-    styleDefault(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.styleDefault());
-            });
-        });
+    styleDefault(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.styleDefault()));
     }
-    styleLightContent(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.styleLightContent());
-            });
-        });
+    styleLightContent(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.styleLightContent()));
     }
-    styleBlackTranslucent(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.styleBlackTranslucent());
-            });
-        });
+    styleBlackTranslucent(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.styleBlackTranslucent()));
     }
-    styleBlackOpaque(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.styleBlackOpaque());
-            });
-        });
+    styleBlackOpaque(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.styleBlackOpaque()));
     }
-    backgroundColorByName(color: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.backgroundColorByName(color));
-            });
-        });
+    backgroundColorByName(color: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.backgroundColorByName(color)));
     }
-    backgroundColorByHexString(colorHex: string): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.backgroundColorByHexString(colorHex));
-            });
-        });
+    backgroundColorByHexString(colorHex: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.backgroundColorByHexString(colorHex)));
     }
-    hide(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.hide());
-            });
-        });
+    hide(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.hide()));
     }
-    show(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.show());
-            });
-        });
+    show(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.show()));
     }
-    isVisible(): Promise<any> {
-        return this.deviceready().then((): Promise<any> => {
-            return new Promise<any>((resolve, reject): void => {
-                resolve((<any>window).StatusBar.isVisible());
-            });
-        });
+    isVisible(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.of(this.zone, (<any>window).StatusBar.isVisible()));
     }
 }

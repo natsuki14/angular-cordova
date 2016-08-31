@@ -1,156 +1,169 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 // cordova-plugin-camera
-var cordova_service_1 = require('../cordova.service');
-var CordovaCameraDestinationType = (function () {
-    function CordovaCameraDestinationType() {
+var core_1 = require('@angular/core');
+require('rxjs/add/operator/mergeMap');
+var cordova_1 = require('../cordova');
+var CameraDestinationType = (function () {
+    function CameraDestinationType() {
     }
-    Object.defineProperty(CordovaCameraDestinationType, "DATA_URL", {
+    Object.defineProperty(CameraDestinationType, "DATA_URL", {
         get: function () { return 0; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraDestinationType, "FILE_URI", {
+    Object.defineProperty(CameraDestinationType, "FILE_URI", {
         get: function () { return 1; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraDestinationType, "NATIVE_URI", {
+    Object.defineProperty(CameraDestinationType, "NATIVE_URI", {
         get: function () { return 2; },
         enumerable: true,
         configurable: true
     });
-    return CordovaCameraDestinationType;
+    return CameraDestinationType;
 }());
-exports.CordovaCameraDestinationType = CordovaCameraDestinationType;
-var CordovaCameraEncodingType = (function () {
-    function CordovaCameraEncodingType() {
+exports.CameraDestinationType = CameraDestinationType;
+var CameraEncodingType = (function () {
+    function CameraEncodingType() {
     }
-    Object.defineProperty(CordovaCameraEncodingType, "JPEG", {
+    Object.defineProperty(CameraEncodingType, "JPEG", {
         get: function () { return 0; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraEncodingType, "PNG", {
+    Object.defineProperty(CameraEncodingType, "PNG", {
         get: function () { return 1; },
         enumerable: true,
         configurable: true
     });
-    return CordovaCameraEncodingType;
+    return CameraEncodingType;
 }());
-exports.CordovaCameraEncodingType = CordovaCameraEncodingType;
-var CordovaCameraMediaType = (function () {
-    function CordovaCameraMediaType() {
+exports.CameraEncodingType = CameraEncodingType;
+var CameraMediaType = (function () {
+    function CameraMediaType() {
     }
-    Object.defineProperty(CordovaCameraMediaType, "PICTURE", {
+    Object.defineProperty(CameraMediaType, "PICTURE", {
         get: function () { return 0; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraMediaType, "VIDEO", {
+    Object.defineProperty(CameraMediaType, "VIDEO", {
         get: function () { return 1; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraMediaType, "ALLMEDIA", {
+    Object.defineProperty(CameraMediaType, "ALLMEDIA", {
         get: function () { return 2; },
         enumerable: true,
         configurable: true
     });
-    return CordovaCameraMediaType;
+    return CameraMediaType;
 }());
-exports.CordovaCameraMediaType = CordovaCameraMediaType;
-var CordovaCameraPictureSourceType = (function () {
-    function CordovaCameraPictureSourceType() {
+exports.CameraMediaType = CameraMediaType;
+var CameraPictureSourceType = (function () {
+    function CameraPictureSourceType() {
     }
-    Object.defineProperty(CordovaCameraPictureSourceType, "PHOTOLIBRARY", {
+    Object.defineProperty(CameraPictureSourceType, "PHOTOLIBRARY", {
         get: function () { return 0; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraPictureSourceType, "CAMERA", {
+    Object.defineProperty(CameraPictureSourceType, "CAMERA", {
         get: function () { return 1; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraPictureSourceType, "SAVEDPHOTOALBUM", {
+    Object.defineProperty(CameraPictureSourceType, "SAVEDPHOTOALBUM", {
         get: function () { return 2; },
         enumerable: true,
         configurable: true
     });
-    return CordovaCameraPictureSourceType;
+    return CameraPictureSourceType;
 }());
-exports.CordovaCameraPictureSourceType = CordovaCameraPictureSourceType;
-var CordovaCameraPopoverArrowDirection = (function () {
-    function CordovaCameraPopoverArrowDirection() {
+exports.CameraPictureSourceType = CameraPictureSourceType;
+var CameraPopoverArrowDirection = (function () {
+    function CameraPopoverArrowDirection() {
     }
-    Object.defineProperty(CordovaCameraPopoverArrowDirection, "ARROW_UP", {
+    Object.defineProperty(CameraPopoverArrowDirection, "ARROW_UP", {
         get: function () { return 1; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraPopoverArrowDirection, "ARROW_DOWN", {
+    Object.defineProperty(CameraPopoverArrowDirection, "ARROW_DOWN", {
         get: function () { return 2; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraPopoverArrowDirection, "ARROW_LEFT", {
+    Object.defineProperty(CameraPopoverArrowDirection, "ARROW_LEFT", {
         get: function () { return 4; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraPopoverArrowDirection, "ARROW_RIGHT", {
+    Object.defineProperty(CameraPopoverArrowDirection, "ARROW_RIGHT", {
         get: function () { return 8; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraPopoverArrowDirection, "ARROW_ANY", {
+    Object.defineProperty(CameraPopoverArrowDirection, "ARROW_ANY", {
         get: function () { return 15; },
         enumerable: true,
         configurable: true
     });
-    return CordovaCameraPopoverArrowDirection;
+    return CameraPopoverArrowDirection;
 }());
-exports.CordovaCameraPopoverArrowDirection = CordovaCameraPopoverArrowDirection;
-var CordovaCameraCameraDirection = (function () {
-    function CordovaCameraCameraDirection() {
+exports.CameraPopoverArrowDirection = CameraPopoverArrowDirection;
+var CameraCameraDirection = (function () {
+    function CameraCameraDirection() {
     }
-    Object.defineProperty(CordovaCameraCameraDirection, "BACK", {
+    Object.defineProperty(CameraCameraDirection, "BACK", {
         get: function () { return 0; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(CordovaCameraCameraDirection, "FRONT", {
+    Object.defineProperty(CameraCameraDirection, "FRONT", {
         get: function () { return 1; },
         enumerable: true,
         configurable: true
     });
-    return CordovaCameraCameraDirection;
+    return CameraCameraDirection;
 }());
-exports.CordovaCameraCameraDirection = CordovaCameraCameraDirection;
-var CordovaCameraService = (function (_super) {
-    __extends(CordovaCameraService, _super);
-    function CordovaCameraService() {
-        _super.apply(this, arguments);
+exports.CameraCameraDirection = CameraCameraDirection;
+var CameraService = (function () {
+    function CameraService(zone) {
+        this.zone = zone;
     }
-    CordovaCameraService.prototype.getPicture = function (options) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.navigator.camera.getPicture(resolve, reject, options);
-            });
-        });
+    CameraService.prototype.getPicture = function (options) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.navigator.camera.getPicture(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error, options);
+        }); });
     };
-    CordovaCameraService.prototype.cleanup = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.navigator.camera.cleanup(resolve, reject);
-            });
-        });
+    CameraService.prototype.cleanup = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.navigator.camera.cleanup(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    return CordovaCameraService;
-}(cordova_service_1.CordovaService));
-exports.CordovaCameraService = CordovaCameraService;
+    CameraService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [core_1.NgZone])
+    ], CameraService);
+    return CameraService;
+}());
+exports.CameraService = CameraService;

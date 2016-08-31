@@ -1,93 +1,124 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-// https://github.com/jeduan/cordova-plugin-facebook4
-var cordova_service_1 = require('../../cordova.service');
-var CordovaFacebookService = (function (_super) {
-    __extends(CordovaFacebookService, _super);
-    function CordovaFacebookService() {
-        _super.apply(this, arguments);
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+// cordova-plugin-facebook4
+var core_1 = require('@angular/core');
+require('rxjs/add/operator/mergeMap');
+var cordova_1 = require('../../cordova');
+var FacebookService = (function () {
+    function FacebookService(zone) {
+        this.zone = zone;
     }
-    CordovaFacebookService.prototype.login = function (permissions) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.login(permissions, resolve, reject);
-            });
-        });
+    FacebookService.prototype.login = function (permissions) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.login(permissions, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.showDialog = function (options) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.showDialog(options, resolve, reject);
-            });
-        });
+    FacebookService.prototype.showDialog = function (options) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.showDialog(options, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.api = function (path, permissions) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.api(path, permissions, resolve, reject);
-            });
-        });
+    FacebookService.prototype.api = function (path, permissions) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.api(path, permissions, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.getAccessToken = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.getAccessToken(resolve, reject);
-            });
-        });
+    FacebookService.prototype.getAccessToken = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.getAccessToken(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.getLoginStatus = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.getLoginStatus(resolve, reject);
-            });
-        });
+    FacebookService.prototype.getLoginStatus = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.getLoginStatus(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.logout = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.logout(resolve, reject);
-            });
-        });
+    FacebookService.prototype.logout = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.logout(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.logEvent = function (name, params, value) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.logEvent(name, params, value, resolve, reject);
-            });
-        });
+    FacebookService.prototype.logEvent = function (name, params, value) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.logEvent(name, params, value, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.logPurchase = function (value, currency) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.logPurchase(value, currency, resolve, reject);
-            });
-        });
+    FacebookService.prototype.logPurchase = function (value, currency) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.logPurchase(value, currency, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.appInvite = function (options) {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.appInvite(options, resolve, reject);
-            });
-        });
+    FacebookService.prototype.appInvite = function (options) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.appInvite(options, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.getDeferredApplink = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.getDeferredApplink(resolve, reject);
-            });
-        });
+    FacebookService.prototype.getDeferredApplink = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.getDeferredApplink(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    CordovaFacebookService.prototype.activateApp = function () {
-        return this.deviceready().then(function () {
-            return new Promise(function (resolve, reject) {
-                window.facebookConnectPlugin.activateApp(resolve, reject);
-            });
-        });
+    FacebookService.prototype.activateApp = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return cordova_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.facebookConnectPlugin.activateApp(function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
     };
-    return CordovaFacebookService;
-}(cordova_service_1.CordovaService));
-exports.CordovaFacebookService = CordovaFacebookService;
+    FacebookService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [core_1.NgZone])
+    ], FacebookService);
+    return FacebookService;
+}());
+exports.FacebookService = FacebookService;
