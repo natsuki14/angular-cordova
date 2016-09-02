@@ -2,6 +2,7 @@ import { NgZone } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/share';
 
 export namespace ZoneObservable {
     export function create(zone: NgZone, fn: (observer: any) => any): Observable<any> {
@@ -40,5 +41,7 @@ export namespace Cordova {
         return () => {
             (<any>document).removeEventListener('deviceready', fn, false);
         };
-    });
+    }).share();
+
+    deviceready.subscribe();
 }
