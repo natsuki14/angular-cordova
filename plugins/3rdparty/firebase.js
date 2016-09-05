@@ -26,6 +26,14 @@ var FirebaseService = (function () {
             }, observer.error);
         }); });
     };
+    FirebaseService.prototype.onNotificationOpen = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.FirebasePlugin.onNotificationOpen(function (res) {
+                observer.next(res);
+            }, observer.error);
+        }); });
+    };
     FirebaseService.prototype.grantPermission = function () {
         var _this = this;
         return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {

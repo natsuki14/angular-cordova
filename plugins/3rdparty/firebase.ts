@@ -19,6 +19,13 @@ export class FirebaseService {
             }, observer.error);
         }));
     }
+    onNotificationOpen(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.onNotificationOpen((res: any) => {
+                observer.next(res);
+            }, observer.error);
+        }));
+    }
     grantPermission(): Observable<any> {
         return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
             (<any>window).FirebasePlugin.grantPermission((res: any) => {
