@@ -6,6 +6,9 @@ angular.module('ngCordova')
         getInstanceId: $cordova.$q(function($q) {
             window.FirebasePlugin.getInstanceId($q.resolve, $q.reject);
         }),
+        onNotificationOpen: $cordova.$q(function($q) {
+            window.FirebasePlugin.getInstanceId($q.notify, $q.reject);
+        }),
         grantPermission: $cordova.$q(function($q) {
             window.FirebasePlugin.grantPermission($q.resolve, $q.reject);
         }),
