@@ -4,7 +4,8 @@ import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 
-import { Cordova, ZoneObservable } from '../cordova';
+import { Cordova } from '../cordova';
+import { ZoneObservable } from '../zone';
 
 @Injectable()
 export class StatusbarService {
