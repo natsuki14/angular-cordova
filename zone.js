@@ -11,7 +11,7 @@ var ZoneObservable;
                     });
                 },
                 error: function (error) {
-                    zone.run(function () { return observer.next(error); });
+                    zone.run(function () { return observer.error(error); });
                 },
                 complete: function () {
                     zone.run(function () { return observer.complete(); });

@@ -12,7 +12,7 @@ export namespace ZoneObservable {
                     });
                 },
                 error: (error: any) => {
-                    zone.run(() => observer.next(error));
+                    zone.run(() => observer.error(error));
                 },
                 complete: () => {
                     zone.run(() => observer.complete());
