@@ -88,6 +88,24 @@ var FirebaseService = (function () {
             }, observer.error);
         }); });
     };
+    FirebaseService.prototype.setUserId = function (id) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.FirebasePlugin.setUserId(id, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
+    };
+    FirebaseService.prototype.setUserProperty = function (name, value) {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.FirebasePlugin.setUserProperty(name, value, function (res) {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }); });
+    };
     FirebaseService.prototype.fetch = function () {
         var _this = this;
         return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {

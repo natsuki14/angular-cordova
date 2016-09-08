@@ -74,6 +74,22 @@ export class FirebaseService {
             }, observer.error);
         }));
     }
+    setUserId(id: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.setUserId(id, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
+    }
+    setUserProperty(name: string, value: string): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.setUserProperty(name, value, (res: any) => {
+                observer.next(res);
+                observer.complete();
+            }, observer.error);
+        }));
+    }
     fetch(): Observable<any> {
         return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
             (<any>window).FirebasePlugin.fetch((res: any) => {
