@@ -11,9 +11,9 @@ import { ZoneObservable } from '../../zone';
 export class FirebaseService {
     constructor(private zone: NgZone) {}
 
-    getInstanceId(): Observable<any> {
+    getToken(): Observable<any> {
         return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
-            (<any>window).FirebasePlugin.getInstanceId((res: any) => {
+            (<any>window).FirebasePlugin.getToken((res: any) => {
                 observer.next(res);
                 observer.complete();
             }, observer.error);
@@ -22,6 +22,13 @@ export class FirebaseService {
     onNotificationOpen(): Observable<any> {
         return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
             (<any>window).FirebasePlugin.onNotificationOpen((res: any) => {
+                observer.next(res);
+            }, observer.error);
+        }));
+    }
+    onTokenRefresh(): Observable<any> {
+        return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
+            (<any>window).FirebasePlugin.onTokenRefresh((res: any) => {
                 observer.next(res);
             }, observer.error);
         }));
