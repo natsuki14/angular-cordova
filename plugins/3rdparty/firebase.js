@@ -17,10 +17,10 @@ var FirebaseService = (function () {
     function FirebaseService(zone) {
         this.zone = zone;
     }
-    FirebaseService.prototype.getInstanceId = function () {
+    FirebaseService.prototype.getToken = function () {
         var _this = this;
         return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {
-            window.FirebasePlugin.getInstanceId(function (res) {
+            window.FirebasePlugin.getToken(function (res) {
                 observer.next(res);
                 observer.complete();
             }, observer.error);
@@ -30,6 +30,14 @@ var FirebaseService = (function () {
         var _this = this;
         return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {
             window.FirebasePlugin.onNotificationOpen(function (res) {
+                observer.next(res);
+            }, observer.error);
+        }); });
+    };
+    FirebaseService.prototype.onTokenRefresh = function () {
+        var _this = this;
+        return cordova_1.Cordova.deviceready.mergeMap(function () { return zone_1.ZoneObservable.create(_this.zone, function (observer) {
+            window.FirebasePlugin.onTokenRefresh(function (res) {
                 observer.next(res);
             }, observer.error);
         }); });
