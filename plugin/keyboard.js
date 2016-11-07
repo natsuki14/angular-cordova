@@ -15,47 +15,37 @@ var _1 = require('../');
 var KeyboardService = (function () {
     function KeyboardService(zone) {
         this.zone = zone;
-    }
-    KeyboardService.prototype.keyboardDidShow = function () {
-        return _1.ZoneObservable.create(this.zone, function (observer) {
+        this.keyboardDidShow = _1.ZoneObservable.create(this.zone, function (observer) {
             window.addEventListener('keyboardDidShow', observer.next, false);
             return function () {
                 window.removeEventListener('keyboardDidShow', observer.next, false);
             };
         });
-    };
-    KeyboardService.prototype.keyboardDidHide = function () {
-        return _1.ZoneObservable.create(this.zone, function (observer) {
+        this.keyboardDidHide = _1.ZoneObservable.create(this.zone, function (observer) {
             window.addEventListener('keyboardDidHide', observer.next, false);
             return function () {
                 window.removeEventListener('keyboardDidHide', observer.next, false);
             };
         });
-    };
-    KeyboardService.prototype.keyboardWillShow = function () {
-        return _1.ZoneObservable.create(this.zone, function (observer) {
+        this.keyboardWillShow = _1.ZoneObservable.create(this.zone, function (observer) {
             window.addEventListener('keyboardWillShow', observer.next, false);
             return function () {
                 window.removeEventListener('keyboardWillShow', observer.next, false);
             };
         });
-    };
-    KeyboardService.prototype.keyboardWillHide = function () {
-        return _1.ZoneObservable.create(this.zone, function (observer) {
+        this.keyboardWillHide = _1.ZoneObservable.create(this.zone, function (observer) {
             window.addEventListener('keyboardWillHide', observer.next, false);
             return function () {
                 window.removeEventListener('keyboardWillHide', observer.next, false);
             };
         });
-    };
-    KeyboardService.prototype.keyboardHeightWillChange = function () {
-        return _1.ZoneObservable.create(this.zone, function (observer) {
+        this.keyboardHeightWillChange = _1.ZoneObservable.create(this.zone, function (observer) {
             window.addEventListener('keyboardHeightWillChange', observer.next, false);
             return function () {
                 window.removeEventListener('keyboardHeightWillChange', observer.next, false);
             };
         });
-    };
+    }
     KeyboardService.prototype.shrinkView = function (bool) {
         var _this = this;
         return _1.Cordova.deviceready.mergeMap(function () { return _1.ZoneObservable.of(_this.zone, window.Keyboard.shrinkView(bool)); });
