@@ -4,8 +4,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
 
-import { Cordova } from '../cordova';
-import { ZoneObservable } from '../zone';
+import { Cordova, ZoneObservable } from '../';
 
 export class CameraDestinationType {
     public static get DATA_URL(): number { return 0; }
