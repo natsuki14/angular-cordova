@@ -13,7 +13,7 @@ export class PositionError {
 }
 
 @Injectable()
-export class CameraService {
+export class GeolocationService {
     constructor(private zone: NgZone) {}
 
     getCurrentPosition(): Observable<any> {

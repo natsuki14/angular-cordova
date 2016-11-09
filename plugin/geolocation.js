@@ -33,11 +33,11 @@ var PositionError = (function () {
     return PositionError;
 }());
 exports.PositionError = PositionError;
-var CameraService = (function () {
-    function CameraService(zone) {
+var GeolocationService = (function () {
+    function GeolocationService(zone) {
         this.zone = zone;
     }
-    CameraService.prototype.getCurrentPosition = function () {
+    GeolocationService.prototype.getCurrentPosition = function () {
         var _this = this;
         return _1.Cordova.deviceready.mergeMap(function () { return _1.ZoneObservable.create(_this.zone, function (observer) {
             window.navigator.geolocation.getCurrentPosition(function (res) {
@@ -46,7 +46,7 @@ var CameraService = (function () {
             }, observer.error);
         }); });
     };
-    CameraService.prototype.watchPosition = function (options) {
+    GeolocationService.prototype.watchPosition = function (options) {
         var _this = this;
         return _1.Cordova.deviceready.mergeMap(function () { return _1.ZoneObservable.create(_this.zone, function (observer) {
             var watchID = window.navigator.geolocation.watchPosition(function (res) {
@@ -58,10 +58,10 @@ var CameraService = (function () {
             };
         }); });
     };
-    CameraService = __decorate([
+    GeolocationService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [core_1.NgZone])
-    ], CameraService);
-    return CameraService;
+    ], GeolocationService);
+    return GeolocationService;
 }());
-exports.CameraService = CameraService;
+exports.GeolocationService = GeolocationService;
