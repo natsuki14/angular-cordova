@@ -56,7 +56,7 @@ var GeolocationService = (function () {
             return function () {
                 window.navigator.geolocation.clearWatch(watchID);
             };
-        }); });
+        }).share(); });
     };
     GeolocationService = __decorate([
         core_1.Injectable(), 
