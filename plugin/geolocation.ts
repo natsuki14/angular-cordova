@@ -33,6 +33,6 @@ export class GeolocationService {
             return () => {
                 (<any>window).navigator.geolocation.clearWatch(watchID);
             };
-        }).share());
+        }));
     }
 }
