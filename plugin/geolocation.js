@@ -51,7 +51,6 @@ var GeolocationService = (function () {
         return _1.Cordova.deviceready.mergeMap(function () { return _1.ZoneObservable.create(_this.zone, function (observer) {
             var watchID = window.navigator.geolocation.watchPosition(function (res) {
                 observer.next(res);
-                observer.complete();
             }, observer.error, options);
             return function () {
                 window.navigator.geolocation.clearWatch(watchID);

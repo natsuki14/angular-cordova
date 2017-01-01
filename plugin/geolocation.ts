@@ -28,7 +28,6 @@ export class GeolocationService {
         return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
             let watchID = (<any>window).navigator.geolocation.watchPosition((res: any) => {
                 observer.next(res);
-                observer.complete();
             }, observer.error, options);
             return () => {
                 (<any>window).navigator.geolocation.clearWatch(watchID);
