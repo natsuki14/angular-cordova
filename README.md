@@ -65,7 +65,7 @@ Example listening to keyboard changes using the keyboard plugin.
 ```
 import { KeyboardService } from 'angular-cordova/plugin/keyboard';
 
-Cordova.keyboardDidShow.subscribe(() => {
+KeyboardService.keyboardDidShow.subscribe(() => {
     console.log("keyboardDidShow");
 });
 ```
