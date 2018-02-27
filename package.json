@@ -24,6 +24,7 @@
     "zone.js": "0.6.21"
   },
   "scripts": {
+    "test": "tsc",
     "build": "tsc"
   }
 }
