@@ -6,47 +6,76 @@ import 'rxjs/add/operator/mergeMap';
 
 import { Cordova, ZoneObservable } from '../';
 
-export class CameraDestinationType {
-    public static get DATA_URL(): number { return 0; }
-    public static get FILE_URI(): number { return 1; }
-    public static get NATIVE_URI(): number { return 2; }
+export enum CameraDestinationType {
+    DATA_URL = 0,
+    FILE_URI,
+    NATIVE_URI
 }
-export class CameraEncodingType {
-    public static get JPEG(): number { return 0; }
-    public static get PNG(): number { return 1; }
+
+export enum CameraEncodingType {
+    JPEG = 0,
+    PNG
 }
-export class CameraMediaType {
-    public static get PICTURE(): number { return 0; }
-    public static get VIDEO(): number { return 1; }
-    public static get ALLMEDIA(): number { return 2; }
+
+export enum CameraMediaType {
+    PICTURE = 0,
+    VIDEO,
+    ALLMEDIA
 }
-export class CameraPictureSourceType {
-    public static get PHOTOLIBRARY(): number { return 0; }
-    public static get CAMERA(): number { return 1; }
-    public static get SAVEDPHOTOALBUM(): number { return 2; }
+
+export enum CameraPictureSourceType {
+    PHOTOLIBRARY = 0,
+    CAMERA,
+    SAVEDPHOTOALBUM
 }
-export class CameraPopoverArrowDirection {
-    public static get ARROW_UP(): number { return 1; }
-    public static get ARROW_DOWN(): number { return 2; }
-    public static get ARROW_LEFT(): number { return 4; }
-    public static get ARROW_RIGHT(): number { return 8; }
-    public static get ARROW_ANY(): number { return 15; }
+
+export enum CameraPopoverArrowDirection {
+    ARROW_UP = 1,
+    ARROW_DOWN,
+    ARROW_LEFT = 4,
+    ARROW_RIGHT = 8,
+    ARROW_ANY = 15
 }
-export class CameraCameraDirection {
-    public static get BACK(): number { return 0; }
-    public static get FRONT(): number { return 1; }
+
+export enum CameraDirection {
+    BACK = 0,
+    FRONT
+}
+
+export interface CameraOptions {
+    quality?: number,
+    destinationType?: CameraDestinationType,
+    sourceType?: CameraPictureSourceType,
+    allowEdit?: boolean,
+    encodingType?: CameraEncodingType,
+    targetWidth?: number,
+    targetHeight?: number,
+    mediaType?: CameraMediaType,
+    correctOrientation?: boolean,
+    saveToPhotoAlbum?: boolean,
+    popoverOptions?: CameraPopoverArrowDirection,
+    cameraDirection?: CameraDirection
 }
 
 @Injectable()
 export class CameraService {
+    private cameraDefaults: CameraOptions = {
+        quality: 50,
+        destinationType: CameraDestinationType.FILE_URI,
+        sourceType: CameraPictureSourceType.CAMERA,
+        encodingType: CameraEncodingType.JPEG,
+        mediaType: CameraMediaType.PICTURE,
+        cameraDirection: CameraDirection.BACK
+    }
     constructor(private zone: NgZone) {}
 
-    getPicture(options?: Object): Observable<any> {
+    getPicture(options?: CameraOptions): Observable<any> {
+        const opts = Object.assign({}, this.cameraDefaults, options);
         return Cordova.deviceready.mergeMap(() => ZoneObservable.create(this.zone, (observer: any) => {
             (<any>window).navigator.camera.getPicture((res: any) => {
                 observer.next(res);
                 observer.complete();
-            }, observer.error, options);
+            }, observer.error, opts);
         }));
     }
     cleanup(): Observable<any> {
