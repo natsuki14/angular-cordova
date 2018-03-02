@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 require("rxjs/add/operator/mergeMap");
 var _1 = require("../");
 var MediaStatus;
@@ -17,13 +17,13 @@ var MEDIA_ERROR;
     MEDIA_ERROR[MEDIA_ERROR["MEDIA_ERR_DECODE"] = 3] = "MEDIA_ERR_DECODE";
     MEDIA_ERROR[MEDIA_ERROR["MEDIA_ERR_NONE_SUPPORTED"] = 4] = "MEDIA_ERR_NONE_SUPPORTED";
 })(MEDIA_ERROR = exports.MEDIA_ERROR || (exports.MEDIA_ERROR = {}));
-var MediaError = /** @class */ (function () {
+var MediaError = (function () {
     function MediaError() {
     }
     return MediaError;
 }());
 exports.MediaError = MediaError;
-var MediaService = /** @class */ (function () {
+var MediaService = (function () {
     function MediaService(zone) {
         this.zone = zone;
     }

@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 // cordova-plugin-keyboard
-var core_1 = require('@angular/core');
-require('rxjs/add/operator/mergeMap');
-var _1 = require('../');
+var core_1 = require("@angular/core");
+require("rxjs/add/operator/mergeMap");
+var _1 = require("../");
 var KeyboardService = (function () {
     function KeyboardService(zone) {
         this.zone = zone;
@@ -75,8 +76,8 @@ var KeyboardService = (function () {
         return _1.Cordova.deviceready.mergeMap(function () { return _1.ZoneObservable.of(_this.zone, window.Keyboard.automaticScrollToTopOnHiding = bool); });
     };
     KeyboardService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [core_1.NgZone])
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [core_1.NgZone])
     ], KeyboardService);
     return KeyboardService;
 }());
