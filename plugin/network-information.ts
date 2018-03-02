@@ -7,14 +7,30 @@ import 'rxjs/add/operator/mergeMap';
 import { Cordova, ZoneObservable } from '../';
 
 export class Connection {
-  public static UNKNOWN = 'unknown';
-  public static ETHERNET = 'ethernet';
-  public static WIFI = 'wifi';
-  public static CELL_2G = '2g';
-  public static CELL_3G = '3g';
-  public static CELL_4G = '4g';
-  public static NONE = 'none';
-  public static CELL = 'celluar';
+  public static get UNKNOWN(): string {
+    return 'unknown';
+  }
+  public static get ETHERNET(): string {
+    return 'ethernet';
+  }
+  public static get WIFI(): string {
+    return 'wifi';
+  }
+  public static get CELL_2G(): string {
+    return '2g';
+  }
+  public static get CELL_3G(): string {
+    return '3g';
+  }
+  public static get CELL_4G(): string {
+    return '4g';
+  }
+  public static get NONE(): string {
+    return 'none';
+  }
+  public static get CELL(): string {
+    return 'celluar';
+  }
 }
 
 @Injectable()
