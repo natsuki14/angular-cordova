@@ -6,31 +6,15 @@ import 'rxjs/add/operator/mergeMap';
 
 import { Cordova, ZoneObservable } from '../';
 
-export class Connection {
-  public static get UNKNOWN(): string {
-    return 'unknown';
-  }
-  public static get ETHERNET(): string {
-    return 'ethernet';
-  }
-  public static get WIFI(): string {
-    return 'wifi';
-  }
-  public static get CELL_2G(): string {
-    return '2g';
-  }
-  public static get CELL_3G(): string {
-    return '3g';
-  }
-  public static get CELL_4G(): string {
-    return '4g';
-  }
-  public static get NONE(): string {
-    return 'none';
-  }
-  public static get CELL(): string {
-    return 'celluar';
-  }
+export enum Connection {
+  UNKNOWN = 'unknown',
+  ETHERNET = 'ethernet',
+  WIFI = 'wifi',
+  CELL_2G = '2g',
+  CELL_3G = '3g',
+  CELL_4G = '4g',
+  NONE = 'none',
+  CELL = 'celluar'
 }
 
 @Injectable()
@@ -59,7 +43,7 @@ export class NetworkInformationService {
     );
   }
 
-  connectionType(): Observable<any> {
+  connectionType(): Observable<Connection> {
     return Cordova.deviceready.mergeMap(() =>
       ZoneObservable.of(this.zone, (<any>window).navigator.connection.type)
     );

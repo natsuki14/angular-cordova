@@ -1,6 +1,7 @@
 "use strict";
-var Observable_1 = require('rxjs/Observable');
-require('rxjs/add/operator/share');
+exports.__esModule = true;
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/share");
 var Cordova;
 (function (Cordova) {
     Cordova.platformId = window.cordova.platformId;

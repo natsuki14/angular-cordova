@@ -10,68 +10,17 @@ exports.__esModule = true;
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/mergeMap");
 var _1 = require("../");
-var Connection = /** @class */ (function () {
-    function Connection() {
-    }
-    Object.defineProperty(Connection, "UNKNOWN", {
-        get: function () {
-            return 'unknown';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Connection, "ETHERNET", {
-        get: function () {
-            return 'ethernet';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Connection, "WIFI", {
-        get: function () {
-            return 'wifi';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Connection, "CELL_2G", {
-        get: function () {
-            return '2g';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Connection, "CELL_3G", {
-        get: function () {
-            return '3g';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Connection, "CELL_4G", {
-        get: function () {
-            return '4g';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Connection, "NONE", {
-        get: function () {
-            return 'none';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Connection, "CELL", {
-        get: function () {
-            return 'celluar';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Connection;
-}());
-exports.Connection = Connection;
+var Connection;
+(function (Connection) {
+    Connection["UNKNOWN"] = "unknown";
+    Connection["ETHERNET"] = "ethernet";
+    Connection["WIFI"] = "wifi";
+    Connection["CELL_2G"] = "2g";
+    Connection["CELL_3G"] = "3g";
+    Connection["CELL_4G"] = "4g";
+    Connection["NONE"] = "none";
+    Connection["CELL"] = "celluar";
+})(Connection = exports.Connection || (exports.Connection = {}));
 var NetworkInformationService = /** @class */ (function () {
     function NetworkInformationService(zone) {
         this.zone = zone;
