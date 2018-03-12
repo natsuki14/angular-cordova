@@ -1,4 +1,4 @@
-![](https://travis-ci.org/arnesson/angular-cordova.svg?branch=master)
+[![Build Status](https://travis-ci.org/arnesson/angular-cordova.svg?branch=master)](https://travis-ci.org/arnesson/angular-cordova)
 
 # angular-cordova
 This library allows you to access Cordova and Cordova Plugins using Angular and Typescript.

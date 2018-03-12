@@ -13,22 +13,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/mergeMap");
 var _1 = require("../");
-var CompassError = (function () {
-    function CompassError() {
-    }
-    Object.defineProperty(CompassError, "COMPASS_INTERNAL_ERR", {
-        get: function () { return 0; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(CompassError, "COMPASS_NOT_SUPPORTED", {
-        get: function () { return 20; },
-        enumerable: true,
-        configurable: true
-    });
-    return CompassError;
-}());
-exports.CompassError = CompassError;
+var CompassError;
+(function (CompassError) {
+    CompassError[CompassError["COMPASS_INTERNAL_ERR"] = 0] = "COMPASS_INTERNAL_ERR";
+    CompassError[CompassError["COMPASS_NOT_SUPPORTED"] = 20] = "COMPASS_NOT_SUPPORTED";
+})(CompassError = exports.CompassError || (exports.CompassError = {}));
 var DeviceOrientationService = (function () {
     function DeviceOrientationService(zone) {
         this.zone = zone;

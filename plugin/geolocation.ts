@@ -6,10 +6,10 @@ import 'rxjs/add/operator/mergeMap';
 
 import { Cordova, ZoneObservable } from '../';
 
-export class PositionError {
-    public static get PERMISSION_DENIED(): number { return 1; }
-    public static get POSITION_UNAVAILABLE(): number { return 2; }
-    public static get TIMEOUT(): number { return 3; }
+export enum PositionError {
+    PERMISSION_DENIED = 0,
+    POSITION_UNAVAILABLE,
+    TIMEOUT
 }
 
 @Injectable()

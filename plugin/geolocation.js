@@ -13,27 +13,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/mergeMap");
 var _1 = require("../");
-var PositionError = (function () {
-    function PositionError() {
-    }
-    Object.defineProperty(PositionError, "PERMISSION_DENIED", {
-        get: function () { return 1; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PositionError, "POSITION_UNAVAILABLE", {
-        get: function () { return 2; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PositionError, "TIMEOUT", {
-        get: function () { return 3; },
-        enumerable: true,
-        configurable: true
-    });
-    return PositionError;
-}());
-exports.PositionError = PositionError;
+var PositionError;
+(function (PositionError) {
+    PositionError[PositionError["PERMISSION_DENIED"] = 0] = "PERMISSION_DENIED";
+    PositionError[PositionError["POSITION_UNAVAILABLE"] = 1] = "POSITION_UNAVAILABLE";
+    PositionError[PositionError["TIMEOUT"] = 2] = "TIMEOUT";
+})(PositionError = exports.PositionError || (exports.PositionError = {}));
 var GeolocationService = (function () {
     function GeolocationService(zone) {
         this.zone = zone;

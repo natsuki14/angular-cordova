@@ -6,10 +6,11 @@ import 'rxjs/add/operator/mergeMap';
 
 import { Cordova, ZoneObservable } from '../';
 
-export class CompassError {
-    public static get COMPASS_INTERNAL_ERR(): number { return 0; }
-    public static get COMPASS_NOT_SUPPORTED(): number { return 20; }
+export enum CompassError {
+    COMPASS_INTERNAL_ERR = 0,
+    COMPASS_NOT_SUPPORTED = 20
 }
+
 
 @Injectable()
 export class DeviceOrientationService {
