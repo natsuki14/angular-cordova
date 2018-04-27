@@ -11,6 +11,19 @@ NPM: https://www.npmjs.com/package/angular-cordova
 * Call plugins before they are loaded
 * Load your app as fast as possible, no need to wait for deviceready
 
+## Installation
+This package is distributed as source files and not as a library, because of this you have to add the source files to your tsconfig.json file:
+
+```
+{
+    ...
+    "include": [
+        "src/**/*",
+        "./node_modules/angular-cordova/**/*"
+    ],
+}
+```
+
 ## API structure
 All apis follow the official specification closely, as outlined [here](https://cordova.apache.org/docs/en/latest/#plugin-apis). 
 
