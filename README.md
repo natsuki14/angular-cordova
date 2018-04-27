@@ -12,7 +12,7 @@ NPM: https://www.npmjs.com/package/angular-cordova
 * Load your app as fast as possible, no need to wait for deviceready
 
 ## Installation
-This package is distributed as source files and not as a library, because of this you have to add the source files to your tsconfig.json file:
+This package is distributed as source files and not as a library, because of this you need to add the files to your tsconfig.json file:
 
 ```
 {
