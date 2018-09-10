@@ -8,7 +8,7 @@
     "url": "https://github.com/arnesson/angular-cordova"
   },
   "name": "angular-cordova",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Angular wrapper for Cordova",
   "keywords": [
     "angular",
