@@ -3,7 +3,7 @@ import { Injectable, NgZone } from '@angular/core';
 
 import { Observable } from "rxjs";
 
-import 'rxjs/add/operator/mergeMap';
+import { mergeMap } from 'rxjs/operators';
 
 import { Cordova, ZoneObservable } from '../';
 
